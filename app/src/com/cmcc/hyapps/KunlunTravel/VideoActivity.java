@@ -49,7 +49,7 @@ public class VideoActivity extends Activity {
         setContentView(R.layout.videoview);
 
         playfunction();
-        Log.e("==",getPackageName()+", "+ Build.VERSION.SDK_INT);
+        Log.e("==", getPackageName() + ", " + Build.VERSION.SDK_INT);
     }
 
 
@@ -61,18 +61,14 @@ public class VideoActivity extends Activity {
         mVideoView = (VideoView) findViewById(R.id.surface_view);
 //        path = Environment.getExternalStorageDirectory()
 //                + "/test.mp4";
-		path ="rtsp://111.44.243.114/live/030101111000034-1/1";
+//		path ="rtsp://111.44.243.114/live/030101111000034-1/1";
 //		path="http://dlqncdn.miaopai.com/stream/MVaux41A4lkuWloBbGUGaQ__.mp4";
-//		path="http://112.54.207.48/media/qhkl/model/201603/A72221CF7BDE4F698C6EFF215675DE97.mp4";
+        path = "http://112.54.207.48/media/qhkl/model/201603/A72221CF7BDE4F698C6EFF215675DE97.mp4";
         if (path == "") {
             // Tell the user to provide a media file URL/path.
             Toast.makeText(VideoActivity.this, "Please edit VideoActivity Activity, and set path" + " variable to your media file URL/path", Toast.LENGTH_LONG).show();
             return;
         } else {
-            /*
-			 * Alternatively,for streaming media you can use
-			 * mVideoView.setVideoURI(Uri.parse(URLstring));
-			 */
             mVideoView.setVideoPath(path);
             mVideoView.setMediaController(new MediaController(this));
             mVideoView.requestFocus();
