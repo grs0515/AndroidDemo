@@ -8,9 +8,7 @@ buildscript {
 }
 
 allprojects {
-    version = VERSION_NAME
-//    group = GROUP
-
+//    version = VERSION_NAME
     repositories {
         mavenCentral()
     }

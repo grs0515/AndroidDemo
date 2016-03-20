@@ -6,17 +6,15 @@ dependencies {
 }
 
 android {
-    compileSdkVersion Integer.parseInt(project.ANDROID_BUILD_SDK_VERSION)
-    buildToolsVersion project.ANDROID_BUILD_TOOLS_VERSION
+    compileSdkVersion 21
+    buildToolsVersion '21.1.2'
 
     defaultConfig {
         applicationId "com.cmcc.hyapps.KunlunTravel"
-//        minSdkVersion 15
-//        targetSdkVersion 23
-//        versionCode 1
-//        versionName "1.0"
-        minSdkVersion Integer.parseInt(project.ANDROID_BUILD_MIN_SDK_VERSION)
-        targetSdkVersion Integer.parseInt(project.ANDROID_BUILD_TARGET_SDK_VERSION)
+        minSdkVersion 15
+        targetSdkVersion 21
+        versionCode 1
+        versionName "1.0"
     }
 
     sourceSets {
