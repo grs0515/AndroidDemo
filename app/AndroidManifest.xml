@@ -83,41 +83,60 @@
     <uses-feature android:name="android.hardware.camera.autofocus" />
     <!-- 访问闪光灯,android开发网提示HTC Dream不包含闪光灯 -->
     <uses-permission android:name="android.permission.FLASHLIGHT" />
-    <!-- 允许录制音频-->
+    <!-- 允许录制音频 -->
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
     <uses-permission android:name="android.permission.REORDER_TASKS" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 
     <application
+        android:name=".base.BaseApp"
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:persistent="true"
         android:screenOrientation="portrait"
         android:supportsRtl="true">
+        <!-- ============================清单meta-data相关配置===============================-->
+        <!-- 多渠道打包，生成不多IP地址的apk -->
+        <meta-data
+            android:name="server_ip"
+            android:value="${SERVER_IP}" />
+        <meta-data
+            android:name="BuildVersion"
+            android:value="1000" />
 
-        <!-- Don't forgot InitActivity -->
-        <!--<activity-->
-            <!--android:name="io.vov.vitamio.activity.InitActivity"-->
-            <!--android:configChanges="orientation|screenSize|smallestScreenSize|keyboard|keyboardHidden|navigation"-->
-            <!--android:launchMode="singleTop"-->
-            <!--android:theme="@android:style/Theme.NoTitleBar"-->
-            <!--android:windowSoftInputMode="stateAlwaysHidden" />-->
-       <!-- -->
-        <activity android:name="com.cmcc.hyapps.KunlunTravel.VideoActivity"
-            android:theme="@android:style/Theme.NoTitleBar">
+        <!-- 高德定位key -->
+        <meta-data
+            android:name="com.amap.api.v2.apikey"
+            android:value="c9bf8fdc2f32b25cd463bbeb155b7fa8" />
+
+        <!-- 在你的项目的AndroidManifest中注明你的设计稿的尺寸。 -->
+        <meta-data
+            android:name="design_width"
+            android:value="720" />
+        <meta-data
+            android:name="design_height"
+            android:value="1280" />
+        <!-- 友盟统计:UMENG_APPKEY 的值可在友盟添加App获取； -->
+        <meta-data
+            android:name="UMENG_APPKEY"
+            android:value="56cac3f867e58e519a001d5e" />
+        <!-- UMENG_CHANNEL 是市场的渠道号，用于统计用户通过哪个市场下载应用-->
+        <meta-data
+            android:name="UMENG_CHANNEL"
+            android:value="Umeng" />
+        <!--==========================本地Activity=============================-->
+        <activity
+            android:name=".home.view.HomeActivity"
+            android:theme="@style/NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <meta-data
-            android:name="UMENG_APPKEY"
-            android:value="563c244467e58e53e60005cc"></meta-data>
-        <meta-data
-            android:name="UMENG_CHANNEL"
-            android:value="demo"></meta-data>
-
+        <activity android:name=".VideoActivity"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen"/>
     </application>
 
 </manifest>

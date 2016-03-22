@@ -1,9 +1,19 @@
 apply plugin: 'com.android.application'
 
+//configurations { all*.exclude group: 'com.android.support', module: 'support-v4' }
+//configurations { all*.exclude group: 'com.android.support', module: 'support-annotations' }
 dependencies {
     compile project(':vitamio')
     compile project(':xutils')
     compile project(':autolayout')
+    compile 'com.android.support:multidex:'
+    compile files('libs/AMap_Location_v1.4.1_20150917.jar')
+    compile files('libs/umeng-analytics-v5.6.4.jar')
+    compile 'com.bigkoo:convenientbanner:2.0.4'
+    compile 'com.google.code.gson:gson:2.2.4'
+    compile 'com.android.support:recyclerview-v7:22.2.1'
+    compile 'com.android.support:design:22.2.1'
+//    compile project(':recyclerview')
 }
 
 android {
@@ -17,6 +27,7 @@ android {
         targetSdkVersion 21
         versionCode 1
         versionName "1.0"
+        multiDexEnabled true
     }
     //签名配置
     signingConfigs {
@@ -54,6 +65,32 @@ android {
         jumboMode = true
         javaMaxHeapSize "2g"
     }
+    //多渠道打包(赋值给AndroidManifest):生成不同IP
+    productFlavors {
+        formal {
+            manifestPlaceholders = [SERVER_IP: "http://111.44.243.118/"]
+        }
+
+        internal {
+            manifestPlaceholders = [SERVER_IP: "http://10.2.45.18/"]
+        }
+        stage {
+            manifestPlaceholders = [SERVER_IP: "http://112.54.207.49/"]
+        }
+    }
+//多渠道打包(赋值给AndroidManifest):生成不同应用市场名
+//    productFlavors {
+//
+//        wandoujia {}
+//        baidu {}
+//        c360 {}
+//        uc {}
+//
+//        productFlavors.all { flavor ->
+//            flavor.manifestPlaceholders = [UMENG_CHANNEL_VALUE: name]
+//        }
+//
+//    }
 }
 //打包输出apk格式：app-formal/internal/stage-1.0.0-时间.apk
 android.applicationVariants.all { variant ->

@@ -8,6 +8,7 @@ import org.xutils.x;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.text.DecimalFormat;
 
 public class FileUtil {
 
@@ -17,7 +18,7 @@ public class FileUtil {
     /**
      * 获取缓存目录（android 包名 文件名）
      * @param dirName
-     * @return
+     * @return /storage/emulated/0/Android/data/com.cmcc.hyapps.KunlunTravel/cache
      */
     public static File getCacheDir(String dirName) {
         File result;
@@ -39,6 +40,21 @@ public class FileUtil {
         }
     }
 
+    /**
+     *
+     * @return
+     */
+    public static String getDiskCache() {
+        File directory;
+        if (existsSdcard()) {
+            directory = x.app().getExternalCacheDir();
+        } else {
+            directory = new File(x.app().getFilesDir(), "xUtils_img");
+        }
+        double d = (double) FileUtil.getFileOrDirSize(directory) / (1024 * 1024);
+        String size = new DecimalFormat("#.00").format(d) + "M";
+        return size;
+    }
     /**
      * 检查磁盘空间是否大于10mb
      *

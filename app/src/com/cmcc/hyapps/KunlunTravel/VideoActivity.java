@@ -21,8 +21,9 @@ import android.app.Activity;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
-import android.widget.EditText;
 import android.widget.Toast;
+
+import com.cmcc.hyapps.KunlunTravel.base.AppConst;
 
 import io.vov.vitamio.MediaPlayer;
 import io.vov.vitamio.Vitamio;
@@ -36,9 +37,8 @@ public class VideoActivity extends Activity {
      * path.
      */
 
-    boolean ifUpdate;
-    ;
-
+    private String path = "";
+    private int id;
 
     @Override
     public void onCreate(Bundle icicle) {
@@ -47,23 +47,20 @@ public class VideoActivity extends Activity {
         Vitamio.isInitialized(this);
 
         setContentView(R.layout.videoview);
-
+        id = getIntent().getIntExtra(AppConst.EXTRA_DATA_INT,0);
+        path = getIntent().getStringExtra(AppConst.EXTRA_DATA_STRING);
         playfunction();
         Log.e("==", getPackageName() + ", " + Build.VERSION.SDK_INT);
     }
 
 
     void playfunction() {
-        String path = "";
-        VideoView mVideoView;
-        EditText mEditText;
-        mEditText = (EditText) findViewById(R.id.url);
-        mVideoView = (VideoView) findViewById(R.id.surface_view);
+        VideoView mVideoView = (VideoView) findViewById(R.id.surface_view);
 //        path = Environment.getExternalStorageDirectory()
 //                + "/test.mp4";
 //		path ="rtsp://111.44.243.114/live/030101111000034-1/1";
 //		path="http://dlqncdn.miaopai.com/stream/MVaux41A4lkuWloBbGUGaQ__.mp4";
-        path = "http://112.54.207.48/media/qhkl/model/201603/A72221CF7BDE4F698C6EFF215675DE97.mp4";
+//        path = "http://112.54.207.48/media/qhkl/model/201603/A72221CF7BDE4F698C6EFF215675DE97.mp4";
         if (path == "") {
             // Tell the user to provide a media file URL/path.
             Toast.makeText(VideoActivity.this, "Please edit VideoActivity Activity, and set path" + " variable to your media file URL/path", Toast.LENGTH_LONG).show();
