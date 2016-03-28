@@ -20,6 +20,13 @@ public class ImageManager {
     private static int default_empty = R.drawable.default_loading;
     private static int default_fail = R.drawable.default_loading;
 
+    /**
+     * 显示图片－带加载和错误图片
+     * @param url 图片的地址
+     * @param img ImageView控件
+     * @param loadingResource 加载中图片(R.drawable.loading)
+     * @param errorResource 错误图片
+     */
     public static void displayImage(String url, ImageView img, int loadingResource, int errorResource) {
         ImageOptions imageOptions = new ImageOptions.Builder()
                 .setSize(DensityUtil.dip2px(120), DensityUtil.dip2px(120))
@@ -33,6 +40,11 @@ public class ImageManager {
         x.image().bind(img, url, imageOptions);
     }
 
+    /**
+     * 显示图片
+     * @param url 图片的地址
+     * @param img ImageView控件
+     */
     public static void displayImage(String url, ImageView img) {
         ImageOptions imageOptions = new ImageOptions.Builder()
                 .setLoadingDrawableId(default_loading)
@@ -42,6 +54,12 @@ public class ImageManager {
         x.image().bind(img, url, imageOptions);
     }
 
+    /**
+     * 显示图片
+     * @param url 图片的地址
+     * @param img ImageView控件
+     * @param callback 回调
+     */
     public static void displayImage(String url, ImageView img,Callback.CommonCallback<Drawable> callback) {
         ImageOptions imageOptions = new ImageOptions.Builder()
                 .setLoadingDrawableId(default_loading)

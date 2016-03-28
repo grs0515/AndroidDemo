@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.cmcc.hyapps.KunlunTravel;
+package com.cmcc.hyapps.KunlunTravel.utils.video;
 
 
 import android.app.Activity;
@@ -23,6 +23,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.cmcc.hyapps.KunlunTravel.R;
 import com.cmcc.hyapps.KunlunTravel.base.AppConst;
 
 import io.vov.vitamio.MediaPlayer;

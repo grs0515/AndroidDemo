@@ -8,9 +8,9 @@ import android.widget.ImageView;
 import com.bigkoo.convenientbanner.holder.Holder;
 import com.cmcc.hyapps.KunlunTravel.R;
 import com.cmcc.hyapps.KunlunTravel.base.ImageManager;
-import com.cmcc.hyapps.KunlunTravel.home.bean.HomeBean;
+import com.cmcc.hyapps.KunlunTravel.home.bean.HomeBannerBean;
 
-public class BannerHolder implements Holder<HomeBean.BannerEntity> {
+public class BannerHolder implements Holder<HomeBannerBean.BannerEntity> {
         private final Context mContent;
         private ImageView image;
 
@@ -27,7 +27,7 @@ public class BannerHolder implements Holder<HomeBean.BannerEntity> {
         }
 
         @Override
-        public void UpdateUI(Context context, final int position, HomeBean.BannerEntity data) {
+        public void UpdateUI(Context context, final int position, HomeBannerBean.BannerEntity data) {
             if (data.getImage_url() != null)
                 ImageManager.displayImage(data.getImage_url(), image);
             else

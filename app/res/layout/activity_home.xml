@@ -218,12 +218,12 @@
                 android:scaleType="fitXY"
                 android:src="@drawable/wenhuabest2" />
 
-            <!--<android.support.v7.widget.RecyclerView-->
-            <!--android:id="@+id/recyle_scenic"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="match_parent"-->
-            <!--android:background="@color/white"-->
-            <!--/>-->
+            <android.support.v7.widget.RecyclerView
+            android:id="@+id/home_best"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            />
 
             <RelativeLayout
                 android:layout_width="match_parent"

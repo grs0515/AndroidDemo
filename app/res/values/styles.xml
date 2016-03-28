@@ -5,4 +5,25 @@
         <item name="android:windowNoTitle">true</item>
     </style>
 
+    <!-- Style for bottom tabs -->
+    <style name="bottom_tab">
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:scaleType">center</item>
+        <item name="android:paddingTop">2dp</item>
+        <item name="android:paddingBottom">2dp</item>
+        <item name="android:drawablePadding">1dp</item>
+        <item name="android:textColor">@color/common_tab_color_selecter</item>
+    </style>
+
+    <!-- Style for action bar. -->
+    <style name="action_bar">
+        <item name="android:background">@color/title_bg</item>
+    </style>
+    <!-- Style for action bar left/right item -->
+    <style name="action_tab_lr">
+        <item name="android:gravity">center</item>
+        <item name="android:padding">13dp</item>
+    </style>
+
 </resources>

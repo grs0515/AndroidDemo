@@ -7,6 +7,7 @@ import android.content.pm.PackageManager;
 import org.xutils.common.util.LogUtil;
 
 /**
+ * 服务器的API接口管理
  * Created by gaoruishan on 15/12/23.
  */
 public class ServiceAPI {

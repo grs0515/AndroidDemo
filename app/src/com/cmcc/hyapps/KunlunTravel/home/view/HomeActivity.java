@@ -9,10 +9,11 @@ import android.view.View;
 
 import com.bigkoo.convenientbanner.ConvenientBanner;
 import com.cmcc.hyapps.KunlunTravel.R;
-import com.cmcc.hyapps.KunlunTravel.VideoActivity;
+import com.cmcc.hyapps.KunlunTravel.utils.video.VideoActivity;
 import com.cmcc.hyapps.KunlunTravel.base.BaseActivity;
 import com.cmcc.hyapps.KunlunTravel.home.presenter.HomePresenter;
 import com.cmcc.hyapps.KunlunTravel.support.FullyGridLayoutManager;
+import com.cmcc.hyapps.KunlunTravel.support.FullyLinearLayoutManager;
 import com.cmcc.hyapps.KunlunTravel.support.SpacesItemDecoration;
 import com.cmcc.hyapps.KunlunTravel.utils.common.ToastUtils;
 
@@ -30,6 +31,9 @@ public class HomeActivity extends BaseActivity implements IHomeView {
     private View loading_progress;
     @ViewInject(R.id.home_video)
     private RecyclerView home_video;
+    @ViewInject(R.id.home_best)
+    private RecyclerView home_best;
+    private String tag="";
 
 
     @Event(value = {R.id.reload_view, R.id.class_im1, R.id.class_im2})
@@ -47,7 +51,6 @@ public class HomeActivity extends BaseActivity implements IHomeView {
         }
 
     }
-
     private HomePresenter mHomePresenter = new HomePresenter(this);
 
     @Override
@@ -61,10 +64,12 @@ public class HomeActivity extends BaseActivity implements IHomeView {
         mHomePresenter.initBanner();
         mHomePresenter.initVideo();
         loading_progress.setVisibility(View.GONE);
+        reload_view.setVisibility(View.GONE);
     }
 
     @Override
     public void initDatasFailed() {
+        loading_progress.setVisibility(View.GONE);
         reload_view.setVisibility(View.VISIBLE);
     }
 
@@ -74,7 +79,7 @@ public class HomeActivity extends BaseActivity implements IHomeView {
     }
 
     @Override
-    public RecyclerView getRecyclerView() {
+    public RecyclerView getVideoRecyclerView() {
         home_video.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
@@ -92,12 +97,36 @@ public class HomeActivity extends BaseActivity implements IHomeView {
     }
 
     @Override
+    public RecyclerView getBestRecyclerView() {
+
+        home_best.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                return true;
+            }
+        });
+        FullyLinearLayoutManager manager = new FullyLinearLayoutManager(this);
+        // 设置布局管理器
+        home_best.setLayoutManager(manager);
+        //recyleScenic.addItemDecoration(new SpacesItemDecoration2(20));
+        // 设置item动画
+        home_best.setItemAnimator(new DefaultItemAnimator());
+        return home_best;
+    }
+
+    @Override
     public Context getContext() {
         return this;
     }
 
     @Override
-    public void startToActivty(int id, String title) {
-        startActivity(VideoActivity.class,id,title);
+    public void startToVideoActivty(int id, String path) {
+        startActivity(VideoActivity.class,id,path);
+    }
+
+    @Override
+    public void startToDetailActivity(int id, String title) {
+//        startActivity();
+        ToastUtils.show(this,title);
     }
 }

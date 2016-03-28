@@ -13,7 +13,8 @@ dependencies {
     compile 'com.google.code.gson:gson:2.2.4'
     compile 'com.android.support:recyclerview-v7:22.2.1'
     compile 'com.android.support:design:22.2.1'
-//    compile project(':recyclerview')
+    compile 'io.reactivex:rxandroid:1.1.0'
+    compile 'io.reactivex:rxjava:1.1.0'
 }
 
 android {

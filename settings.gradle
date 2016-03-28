@@ -1,2 +1,2 @@
-include 'vitamio', ':xutils', ':autolayout'
+include 'vitamio', ':xutils', ':autolayout', ':pulltorefresh'
 include 'app'

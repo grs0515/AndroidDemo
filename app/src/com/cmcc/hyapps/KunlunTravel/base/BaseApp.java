@@ -14,6 +14,7 @@ import org.xutils.x;
 
 
 /**
+ * Application 单例模式 生命周期最长,可进行初始化,数据传递,共享等
  * Created by gaoruishan on 15/12/2.
  */
 public class BaseApp extends MultiDexApplication {
@@ -85,8 +86,12 @@ public class BaseApp extends MultiDexApplication {
     }
 
     public static BaseApp getBaseApp() {
-        if (mInstance==null){
-            mInstance = new BaseApp();
+        if (mInstance==null){//加同步锁更安全
+            synchronized (BaseApp.class){
+                if (mInstance==null){
+                    mInstance = new BaseApp();
+                }
+            }
         }
         return mInstance;
     }

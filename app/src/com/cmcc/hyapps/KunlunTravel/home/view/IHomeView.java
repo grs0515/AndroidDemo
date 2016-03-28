@@ -16,9 +16,12 @@ public interface IHomeView {
 
     ConvenientBanner getConvenientBanner();
 
-    RecyclerView getRecyclerView();
+    RecyclerView getVideoRecyclerView();
+    RecyclerView getBestRecyclerView();
 
     Context getContext();
 
-    void startToActivty(int id,String title);
+    void startToVideoActivty(int id,String path);
+
+    void startToDetailActivity(int id,String title);
 }

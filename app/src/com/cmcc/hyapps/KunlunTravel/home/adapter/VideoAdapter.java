@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 import com.cmcc.hyapps.KunlunTravel.R;
 import com.cmcc.hyapps.KunlunTravel.base.ImageManager;
-import com.cmcc.hyapps.KunlunTravel.home.bean.HomeBean;
+import com.cmcc.hyapps.KunlunTravel.home.bean.HomeBannerBean;
 
 import java.util.List;
 
@@ -26,13 +26,13 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.ItemViewHold
     private LayoutInflater mInflater;
     private OnItemClickListener mOnItemClickListener;
 
-    private List<HomeBean.VideoEntity> mData;
+    private List<HomeBannerBean.VideoEntity> mData;
 
-    public VideoAdapter(Context context, List<HomeBean.VideoEntity> data) {
+    public VideoAdapter(Context context, List<HomeBannerBean.VideoEntity> data) {
         this.mData = data;
         mInflater = LayoutInflater.from(context);
     }
-    public void setDatasChanged(List<HomeBean.VideoEntity> data){
+    public void setDatasChanged(List<HomeBannerBean.VideoEntity> data){
         this.mData = data;
         notifyDataSetChanged();
     }
@@ -45,7 +45,7 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.ItemViewHold
     @SuppressLint("NewApi")
     @Override
     public void onBindViewHolder(final ItemViewHolder itemViewHolder, final int i) {
-        HomeBean.VideoEntity item = mData.get(i);
+        HomeBannerBean.VideoEntity item = mData.get(i);
         if (item.getTitle()!=null){
             itemViewHolder.mTextView.setText(item.getTitle());
         }

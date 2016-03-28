@@ -14,7 +14,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * http请求类 单例设计模式
+ * http请求类－单例设计模式
  * Created by gaoruishan on 16/1/4.
  */
 public final class RequestManager {
@@ -42,6 +42,17 @@ public final class RequestManager {
         return this.sendGsonRequest(method, null, requestParams, cls, listener, errorListener);
     }
 
+    /**
+     * 向服务器发送网络请求
+     * @param method 请求类型
+     * @param url 服务器URL
+     * @param requestParams 请求参数
+     * @param cls 请求实体
+     * @param listener 成功监听
+     * @param errorListener 错误监听
+     * @param <T> 返回当前实体
+     * @return
+     */
     public <T> Callback.Cancelable sendGsonRequest(HttpMethod method, String url, RequestParams requestParams, Class<T> cls, final Response.onSuccessListener<T> listener,
                                                    final Response.onErrorListener errorListener) {
         Callback.Cancelable cancelable = null;

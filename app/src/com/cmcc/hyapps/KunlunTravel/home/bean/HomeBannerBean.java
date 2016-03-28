@@ -10,7 +10,7 @@ import java.util.List;
  * http://112.54.207.48/KunlunTravelAPI/scenic/index.do
  * Created by gaoruishan on 16/3/21.
  */
-public class HomeBean implements Parcelable {
+public class HomeBannerBean implements Parcelable {
 
     /**
      * id : 213
@@ -276,7 +276,7 @@ public class HomeBean implements Parcelable {
 
     @Override
     public String toString() {
-        return "HomeBean{" +
+        return "HomeBannerBean{" +
                 "video=" + video +
                 ", banner=" + banner +
                 '}';
@@ -293,23 +293,23 @@ public class HomeBean implements Parcelable {
         dest.writeList(this.banner);
     }
 
-    public HomeBean() {
+    public HomeBannerBean() {
     }
 
-    protected HomeBean(Parcel in) {
+    protected HomeBannerBean(Parcel in) {
         this.video = new ArrayList<VideoEntity>();
         in.readList(this.video, List.class.getClassLoader());
         this.banner = new ArrayList<BannerEntity>();
         in.readList(this.banner, List.class.getClassLoader());
     }
 
-    public static final Creator<HomeBean> CREATOR = new Creator<HomeBean>() {
-        public HomeBean createFromParcel(Parcel source) {
-            return new HomeBean(source);
+    public static final Creator<HomeBannerBean> CREATOR = new Creator<HomeBannerBean>() {
+        public HomeBannerBean createFromParcel(Parcel source) {
+            return new HomeBannerBean(source);
         }
 
-        public HomeBean[] newArray(int size) {
-            return new HomeBean[size];
+        public HomeBannerBean[] newArray(int size) {
+            return new HomeBannerBean[size];
         }
     };
 }

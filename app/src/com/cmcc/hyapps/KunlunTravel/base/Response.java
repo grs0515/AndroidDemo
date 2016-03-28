@@ -1,5 +1,9 @@
 package com.cmcc.hyapps.KunlunTravel.base;
 
+/**
+ * 接口管理类－各种响应接口回调
+ * @param <T>
+ */
 public class Response<T> {
 
     public interface onSuccessListener<T> {
