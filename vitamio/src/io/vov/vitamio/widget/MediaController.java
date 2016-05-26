@@ -32,6 +32,7 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.PopupWindow;
@@ -94,6 +95,7 @@ public class MediaController extends FrameLayout {
   private boolean mInstantSeeking = false;
   private boolean mFromXml = false;
   private ImageButton mPauseButton;
+  private Button mDownButton;
   private AudioManager mAM;
   private OnShownListener mShownListener;
   private OnHiddenListener mHiddenListener;
@@ -123,6 +125,14 @@ public class MediaController extends FrameLayout {
       show(sDefaultTimeout);
     }
   };
+  private View.OnClickListener mDownListener = new View.OnClickListener() {
+    public void onClick(View v) {
+
+    }
+  };
+  protected void startDownLoad(){
+    
+  }
   private OnSeekBarChangeListener mSeekListener = new OnSeekBarChangeListener() {
     public void onStartTrackingTouch(SeekBar bar) {
       mDragging = true;
@@ -258,8 +268,14 @@ public class MediaController extends FrameLayout {
     mEndTime = (TextView) v.findViewById(getResources().getIdentifier("mediacontroller_time_total", "id", mContext.getPackageName()));
     mCurrentTime = (TextView) v.findViewById(getResources().getIdentifier("mediacontroller_time_current", "id", mContext.getPackageName()));
     mFileName = (TextView) v.findViewById(getResources().getIdentifier("mediacontroller_file_name", "id", mContext.getPackageName()));
-    if (mFileName != null)
+    if (mFileName != null) {
       mFileName.setText(mTitle);
+    }
+    mDownButton = (Button) v.findViewById(getResources().getIdentifier("mediacontroller_file_down", "id", mContext.getPackageName()));
+    if (mDownButton != null) {
+      mDownButton.requestFocus();
+      mDownButton.setOnClickListener(mDownListener);
+    }
   }
 
   public void setMediaPlayer(MediaPlayerControl player) {

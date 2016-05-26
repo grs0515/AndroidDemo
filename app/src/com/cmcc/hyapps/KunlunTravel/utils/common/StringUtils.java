@@ -6,8 +6,10 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -224,5 +226,22 @@ public class StringUtils {
 		Pattern p = Pattern.compile(regEx);
 		Matcher m = p.matcher(strings);
 		return m.find();
+	}
+	/**
+	 * 得到网页中图片的地址
+	 */
+	public static List<String> getImgSrcList(String htmlStr) {
+		List<String> pics = new ArrayList<String>();
+
+		String regEx_img = "<img.*?src=\"http://(.*?).jpg\""; // 图片链接地址
+		Pattern p_image = Pattern.compile(regEx_img, Pattern.CASE_INSENSITIVE);
+		Matcher m_image = p_image.matcher(htmlStr);
+		while (m_image.find()) {
+			String src = m_image.group(1);
+			if (src.length() < 100) {
+				pics.add("http://" + src + ".jpg");
+			}
+		}
+		return pics;
 	}
 }

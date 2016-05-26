@@ -194,4 +194,9 @@
     <string name="login_qq">QQ</string>
     <string name="login_wechat">微信</string>
     <string name="login_sina">微博</string>
+
+    <!-- download-->
+    <string name="remove">移除</string>
+    <string name="stop">停止</string>
+    <string name="start">开始下载</string>
 </resources>

@@ -18,6 +18,7 @@ package com.cmcc.hyapps.KunlunTravel.utils.video;
 
 
 import android.app.Activity;
+import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -68,9 +69,9 @@ public class VideoActivity extends Activity {
             return;
         } else {
             mVideoView.setVideoPath(path);
+//            MediaController mediaController = new VideoMediaController(this);
             mVideoView.setMediaController(new MediaController(this));
             mVideoView.requestFocus();
-
             mVideoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
                 @Override
                 public void onPrepared(MediaPlayer mediaPlayer) {
@@ -80,5 +81,17 @@ public class VideoActivity extends Activity {
             });
         }
     }
+
+   class VideoMediaController extends MediaController{
+
+       public VideoMediaController(Context context) {
+           super(context);
+       }
+
+       @Override
+       protected void startDownLoad() {
+           Log.e("==", "startDownLoad");
+       }
+   }
 
 }

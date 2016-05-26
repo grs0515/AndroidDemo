@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="74dp"
+    android:layout_height="84dp"
     android:background="@color/mediacontroller_bg"
     android:orientation="vertical" >
 
@@ -33,6 +33,7 @@
             android:id="@+id/mediacontroller_time_total"
             style="@style/MediaController_Text"
             android:layout_width="wrap_content"
+            android:text="1:00"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
@@ -49,14 +50,30 @@
             android:focusable="true"
             android:max="1000" />
     </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/mediacontroller_file_name"
-        style="@style/MediaController_Text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="5dp"
-        android:ellipsize="marquee"
-        android:singleLine="true" />
+        <TextView
+            android:id="@+id/mediacontroller_file_name"
+            style="@style/MediaController_Text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:ellipsize="marquee"
+            android:paddingLeft="10px"
+            android:layout_marginRight="80dp"
+            android:layout_centerVertical="true"
+            android:text="dd"
+            android:singleLine="true" />
+        <Button
+            android:id="@+id/mediacontroller_file_down"
+            android:layout_width="80dp"
+            android:text="下载"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
+
 
 </LinearLayout>

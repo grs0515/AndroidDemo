@@ -15,6 +15,8 @@ dependencies {
     compile 'com.android.support:design:22.2.1'
     compile 'io.reactivex:rxandroid:1.1.0'
     compile 'io.reactivex:rxjava:1.1.0'
+    compile project(':pulltorefresh')
+    compile 'com.google.android.agera:agera:1.0.0-rc2'
 }
 
 android {

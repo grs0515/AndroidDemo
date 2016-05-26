@@ -88,7 +88,6 @@
     <uses-permission android:name="android.permission.REORDER_TASKS" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 
-
     <application
         android:name=".base.BaseApp"
         android:allowBackup="true"
@@ -128,7 +127,7 @@
             android:name="UMENG_CHANNEL"
             android:value="Umeng" />
         <!-- ==========================本地Activity============================= -->
-        <!--android:name=".home.view.HomeActivity"-->
+        <!-- android:name=".home.view.HomeActivity" -->
         <activity
             android:name=".home.view.HomeActivity"
             android:theme="@style/NoActionBar">
@@ -141,7 +140,15 @@
         <activity
             android:name=".utils.video.VideoActivity"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
-        <!--<activity android:name=".RxJavaActivity"/>-->
+        <!-- <activity android:name=".RxJavaActivity"/> -->
+
+
+        <!-- xUtils下载服务 -->
+        <service
+            android:name="org.xutils.download.DownloadService"
+            android:process=":dl" />
+
+        <activity android:name=".DownloadListActivity"></activity>
     </application>
 
 </manifest>
