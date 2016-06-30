@@ -1,8 +1,8 @@
-package com.cmcc.hyapps.KunlunTravel.home.model;
+package com.cmcc.hyapps.KunlunTravel.mvp.model;
 
 import com.cmcc.hyapps.KunlunTravel.base.Response;
-import com.cmcc.hyapps.KunlunTravel.home.bean.CultureBestBean;
-import com.cmcc.hyapps.KunlunTravel.home.bean.HomeBannerBean;
+import com.cmcc.hyapps.KunlunTravel.mvp.bean.CultureBestBean;
+import com.cmcc.hyapps.KunlunTravel.mvp.bean.HomeBannerBean;
 
 /**
  *

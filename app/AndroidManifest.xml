@@ -95,7 +95,8 @@
         android:label="@string/app_name"
         android:persistent="true"
         android:screenOrientation="portrait"
-        android:supportsRtl="true">
+        android:supportsRtl="true"
+        android:theme="@style/NoActionBar">
 
         <!-- ============================清单meta-data相关配置=============================== -->
         <!-- 多渠道打包，生成不多IP地址的apk -->
@@ -128,9 +129,7 @@
             android:value="Umeng" />
         <!-- ==========================本地Activity============================= -->
         <!-- android:name=".home.view.HomeActivity" -->
-        <activity
-            android:name=".home.view.HomeActivity"
-            android:theme="@style/NoActionBar">
+        <activity android:name=".IndexActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -140,15 +139,14 @@
         <activity
             android:name=".utils.video.VideoActivity"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
-        <!-- <activity android:name=".RxJavaActivity"/> -->
-
-
         <!-- xUtils下载服务 -->
         <service
             android:name="org.xutils.download.DownloadService"
             android:process=":dl" />
 
-        <activity android:name=".DownloadListActivity"></activity>
+        <activity android:name=".download.DownloadListActivity" />
+        <activity android:name=".mvp.view.HomeActivity" />
+        <activity android:name=".rxjava.RxJavaActivity" />
     </application>
 
 </manifest>

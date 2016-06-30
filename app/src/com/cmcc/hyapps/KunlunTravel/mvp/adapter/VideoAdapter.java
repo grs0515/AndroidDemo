@@ -1,4 +1,4 @@
-package com.cmcc.hyapps.KunlunTravel.home.adapter;
+package com.cmcc.hyapps.KunlunTravel.mvp.adapter;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -7,10 +7,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.cmcc.hyapps.KunlunTravel.R;
 import com.cmcc.hyapps.KunlunTravel.base.ImageManager;
-import com.cmcc.hyapps.KunlunTravel.home.bean.CultureBestBean;
+import com.cmcc.hyapps.KunlunTravel.mvp.bean.HomeBannerBean;
+
+import org.xutils.common.util.LogUtil;
 
 import java.util.List;
 
@@ -20,44 +23,50 @@ import java.util.List;
  * @author: lling(www.liuling123.com)
  * @Date: 2015/10/29
  */
-public class BestAdapter extends RecyclerView.Adapter<BestAdapter.ItemViewHolder> {
+public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.ItemViewHolder> {
 
     private LayoutInflater mInflater;
     private OnItemClickListener mOnItemClickListener;
 
-    private List<CultureBestBean.ResultsEntity> mData;
+    private List<HomeBannerBean.VideoEntity> mData;
 
-    public BestAdapter(Context context, List<CultureBestBean.ResultsEntity> data) {
+    public VideoAdapter(Context context, List<HomeBannerBean.VideoEntity> data) {
         this.mData = data;
         mInflater = LayoutInflater.from(context);
     }
-
-    public void setDatasChanged(List<CultureBestBean.ResultsEntity> data) {
+    public void setDatasChanged(List<HomeBannerBean.VideoEntity> data){
         this.mData = data;
         notifyDataSetChanged();
     }
 
     @Override
     public int getItemCount() {
-        if(mData != null ){
-            return mData.size();
-        }
-        return 0;
+        return mData.size();
     }
 
     @SuppressLint("NewApi")
     @Override
     public void onBindViewHolder(final ItemViewHolder itemViewHolder, final int i) {
-        CultureBestBean.ResultsEntity item = mData.get(i);
-        ImageManager.displayImage(item.getLogo_url(),
+        LogUtil.e("onBindViewHolder");
+        HomeBannerBean.VideoEntity item = mData.get(i);
+        if (item.getTitle()!=null){
+            itemViewHolder.mTextView.setText(item.getTitle());
+        }
+        if (item.getDescinfo()!=null){
+            itemViewHolder.mDesc.setVisibility(View.VISIBLE);
+            itemViewHolder.mDesc.setText(item.getDescinfo());
+        }
+        itemViewHolder.mPlayCount.setText(item.getPlaycount()+"");
+        ImageManager.displayImage(item.getImg_url(),
                 itemViewHolder.mImageView);
-        if (mOnItemClickListener != null) {
+        if(mOnItemClickListener != null) {
+            LogUtil.e("mOnItemClickListener");
             /**
              * 这里加了判断，itemViewHolder.itemView.hasOnClickListeners()
              * 目的是减少对象的创建，如果已经为view设置了click监听事件,就不用重复设置了
              * 不然每次调用onBindViewHolder方法，都会创建两个监听事件对象，增加了内存的开销
              */
-            if (!itemViewHolder.itemView.hasOnClickListeners()) {
+//            if(!itemViewHolder.itemView.hasOnClickListeners()) {
                 itemViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -73,7 +82,7 @@ public class BestAdapter extends RecyclerView.Adapter<BestAdapter.ItemViewHolder
                         return true;
                     }
                 });
-            }
+//            }
         }
     }
 
@@ -84,7 +93,7 @@ public class BestAdapter extends RecyclerView.Adapter<BestAdapter.ItemViewHolder
          * ViewHolder创建的个数好像是可见item的个数+3
          */
         ItemViewHolder holder = new ItemViewHolder(mInflater.inflate(
-                R.layout.home_best_item, viewGroup, false));
+                R.layout.home_video_item, viewGroup, false));
         return holder;
     }
 
@@ -97,16 +106,21 @@ public class BestAdapter extends RecyclerView.Adapter<BestAdapter.ItemViewHolder
      */
     public interface OnItemClickListener {
         public void onItemClick(View view, int position);
-
         public void onItemLongClick(View view, int position);
     }
 
     class ItemViewHolder extends RecyclerView.ViewHolder {
 
+        private TextView mTextView;
+        private TextView mDesc;
+        private TextView mPlayCount;
         private ImageView mImageView;
 
         public ItemViewHolder(View itemView) {
             super(itemView);
+            mTextView = (TextView) itemView.findViewById(R.id.banner_text);
+            mDesc = (TextView) itemView.findViewById(R.id.banner_desc);
+            mPlayCount = (TextView) itemView.findViewById(R.id.play_count);
             mImageView = (ImageView) itemView.findViewById(R.id.banner_img);
         }
     }

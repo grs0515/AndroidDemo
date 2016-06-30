@@ -1,4 +1,4 @@
-package com.cmcc.hyapps.KunlunTravel.home.view;
+package com.cmcc.hyapps.KunlunTravel.mvp.view;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -9,13 +9,13 @@ import android.view.View;
 
 import com.bigkoo.convenientbanner.ConvenientBanner;
 import com.cmcc.hyapps.KunlunTravel.R;
-import com.cmcc.hyapps.KunlunTravel.utils.video.VideoActivity;
 import com.cmcc.hyapps.KunlunTravel.base.BaseActivity;
-import com.cmcc.hyapps.KunlunTravel.home.presenter.HomePresenter;
+import com.cmcc.hyapps.KunlunTravel.mvp.presenter.HomePresenter;
 import com.cmcc.hyapps.KunlunTravel.support.FullyGridLayoutManager;
 import com.cmcc.hyapps.KunlunTravel.support.FullyLinearLayoutManager;
 import com.cmcc.hyapps.KunlunTravel.support.SpacesItemDecoration;
 import com.cmcc.hyapps.KunlunTravel.utils.common.ToastUtils;
+import com.cmcc.hyapps.KunlunTravel.utils.video.VideoActivity;
 
 import org.xutils.view.annotation.ContentView;
 import org.xutils.view.annotation.Event;
@@ -98,13 +98,13 @@ public class HomeActivity extends BaseActivity implements IHomeView {
 
     @Override
     public RecyclerView getBestRecyclerView() {
-
         home_best.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
                 return true;
             }
         });
+//        FullyLinearLayoutManager manager = new FullyLinearLayoutManager(this);
         FullyLinearLayoutManager manager = new FullyLinearLayoutManager(this);
         // 设置布局管理器
         home_best.setLayoutManager(manager);

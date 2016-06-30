@@ -1,10 +1,10 @@
-package com.cmcc.hyapps.KunlunTravel.home.model;
+package com.cmcc.hyapps.KunlunTravel.mvp.model;
 
 import com.cmcc.hyapps.KunlunTravel.base.RequestManager;
 import com.cmcc.hyapps.KunlunTravel.base.Response;
 import com.cmcc.hyapps.KunlunTravel.base.ServiceAPI;
-import com.cmcc.hyapps.KunlunTravel.home.bean.CultureBestBean;
-import com.cmcc.hyapps.KunlunTravel.home.bean.HomeBannerBean;
+import com.cmcc.hyapps.KunlunTravel.mvp.bean.CultureBestBean;
+import com.cmcc.hyapps.KunlunTravel.mvp.bean.HomeBannerBean;
 
 import org.xutils.common.util.LogUtil;
 import org.xutils.http.HttpMethod;

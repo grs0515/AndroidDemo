@@ -1,18 +1,12 @@
-package com.cmcc.hyapps.KunlunTravel;
+package com.cmcc.hyapps.KunlunTravel.download;
 
-import android.content.Context;
-import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.BaseAdapter;
 import android.widget.Button;
-import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.cmcc.hyapps.KunlunTravel.base.BaseActivity;
+import com.cmcc.hyapps.KunlunTravel.R;
 
 import org.xutils.common.Callback;
 import org.xutils.download.DownloadInfo;
@@ -21,89 +15,15 @@ import org.xutils.download.DownloadService;
 import org.xutils.download.DownloadState;
 import org.xutils.download.DownloadViewHolder;
 import org.xutils.ex.DbException;
-import org.xutils.view.annotation.ContentView;
 import org.xutils.view.annotation.Event;
 import org.xutils.view.annotation.ViewInject;
 import org.xutils.x;
 
 import java.io.File;
 
-@ContentView(R.layout.activity_download)
-public class DownloadListActivity extends BaseActivity {
-    @ViewInject(R.id.lv_download)
-    private ListView downloadList;
-
+public class DownloadItemViewHolder extends DownloadViewHolder {
     private DownloadManager downloadManager;
-    private DownloadListAdapter downloadListAdapter;
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        downloadManager = DownloadService.getDownloadManager();
-        downloadListAdapter = new DownloadListAdapter();
-        downloadList.setAdapter(downloadListAdapter);
-    }
-
-    private class DownloadListAdapter extends BaseAdapter {
-
-        private Context mContext;
-        private final LayoutInflater mInflater;
-
-        private DownloadListAdapter() {
-            mContext = getBaseContext();
-            mInflater = LayoutInflater.from(mContext);
-        }
-
-        @Override
-        public int getCount() {
-            if (downloadManager == null) return 0;
-            return downloadManager.getDownloadListCount();
-        }
-
-        @Override
-        public Object getItem(int i) {
-            return downloadManager.getDownloadInfo(i);
-        }
-
-        @Override
-        public long getItemId(int i) {
-            return i;
-        }
-
-        @Override
-        public View getView(int i, View view, ViewGroup viewGroup) {
-            DownloadItemViewHolder holder = null;
-            DownloadInfo downloadInfo = downloadManager.getDownloadInfo(i);
-            if (view == null) {
-                view = mInflater.inflate(R.layout.download_item, null);
-                holder = new DownloadItemViewHolder(view, downloadInfo);
-                view.setTag(holder);
-                holder.refresh();
-            } else {
-                holder = (DownloadItemViewHolder) view.getTag();
-                holder.update(downloadInfo);
-            }
-
-            if (downloadInfo.getState().value() < DownloadState.FINISHED.value()) {
-                try {
-                    downloadManager.startDownload(
-                            downloadInfo.getUrl(),
-                            downloadInfo.getLabel(),
-                            downloadInfo.getFileSavePath(),
-                            downloadInfo.isAutoResume(),
-                            downloadInfo.isAutoRename(),
-                            holder);
-                } catch (DbException ex) {
-                    Toast.makeText(x.app(), "添加下载失败", Toast.LENGTH_LONG).show();
-                }
-            }
-
-            return view;
-        }
-    }
-
-    public class DownloadItemViewHolder extends DownloadViewHolder {
-        @ViewInject(R.id.download_label)
+    @ViewInject(R.id.download_label)
         TextView label;
         @ViewInject(R.id.download_state)
         TextView state;
@@ -114,6 +34,9 @@ public class DownloadListActivity extends BaseActivity {
 
         public DownloadItemViewHolder(View view, DownloadInfo downloadInfo) {
             super(view, downloadInfo);
+            if (downloadManager == null) {
+                downloadManager = DownloadService.getDownloadManager();
+            }
             refresh();
         }
 
@@ -151,7 +74,7 @@ public class DownloadListActivity extends BaseActivity {
         private void removeEvent(View view) {
             try {
                 downloadManager.removeDownload(downloadInfo);
-                downloadListAdapter.notifyDataSetChanged();
+//                downloadListAdapter.notifyDataSetChanged();
             } catch (DbException e) {
                 Toast.makeText(x.app(), "移除任务失败", Toast.LENGTH_LONG).show();
             }
@@ -219,4 +142,3 @@ public class DownloadListActivity extends BaseActivity {
             }
         }
     }
-}

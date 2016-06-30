@@ -1,4 +1,4 @@
-package com.cmcc.hyapps.KunlunTravel;
+package com.cmcc.hyapps.KunlunTravel.rxjava;
 
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
@@ -7,6 +7,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import com.cmcc.hyapps.KunlunTravel.R;
 import com.cmcc.hyapps.KunlunTravel.base.BaseActivity;
 import com.cmcc.hyapps.KunlunTravel.base.RxBus;
 
@@ -29,6 +30,7 @@ import static com.cmcc.hyapps.KunlunTravel.utils.common.ToolFor9Ge.getBitmapFrom
 
 /**
  * RxJava 练习
+ * 查看log日志
  */
 public class RxJavaActivity extends BaseActivity {
 
@@ -37,7 +39,7 @@ public class RxJavaActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_rx_java);
         layout=(LinearLayout)findViewById(R.id.ll);
         //简单创建使用
         test1();

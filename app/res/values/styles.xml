@@ -3,6 +3,7 @@
     <style name="NoActionBar" parent="android:Theme.Holo">
         <item name="android:windowActionBar">false</item>
         <item name="android:windowNoTitle">true</item>
+        <item name="android:windowBackground">@color/base_grey_bg</item>
     </style>
 
     <!-- Style for bottom tabs -->

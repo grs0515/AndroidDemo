@@ -1,4 +1,4 @@
-package com.cmcc.hyapps.KunlunTravel.home.bean;
+package com.cmcc.hyapps.KunlunTravel.mvp.bean;
 
 import android.os.Parcel;
 import android.os.Parcelable;

@@ -1,19 +1,20 @@
-package com.cmcc.hyapps.KunlunTravel.home.presenter;
+package com.cmcc.hyapps.KunlunTravel.mvp.presenter;
 
 import android.content.Context;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.bigkoo.convenientbanner.ConvenientBanner;
 import com.bigkoo.convenientbanner.holder.CBViewHolderCreator;
 import com.cmcc.hyapps.KunlunTravel.R;
 import com.cmcc.hyapps.KunlunTravel.base.Response;
-import com.cmcc.hyapps.KunlunTravel.home.adapter.BestAdapter;
-import com.cmcc.hyapps.KunlunTravel.home.adapter.VideoAdapter;
-import com.cmcc.hyapps.KunlunTravel.home.bean.CultureBestBean;
-import com.cmcc.hyapps.KunlunTravel.home.bean.HomeBannerBean;
-import com.cmcc.hyapps.KunlunTravel.home.holder.BannerHolder;
-import com.cmcc.hyapps.KunlunTravel.home.model.HomeModel;
-import com.cmcc.hyapps.KunlunTravel.home.view.IHomeView;
+import com.cmcc.hyapps.KunlunTravel.mvp.adapter.BestAdapter;
+import com.cmcc.hyapps.KunlunTravel.mvp.adapter.VideoAdapter;
+import com.cmcc.hyapps.KunlunTravel.mvp.bean.CultureBestBean;
+import com.cmcc.hyapps.KunlunTravel.mvp.bean.HomeBannerBean;
+import com.cmcc.hyapps.KunlunTravel.mvp.holder.BannerHolder;
+import com.cmcc.hyapps.KunlunTravel.mvp.model.HomeModel;
+import com.cmcc.hyapps.KunlunTravel.mvp.view.IHomeView;
 
 import java.util.List;
 
@@ -64,11 +65,11 @@ public class HomePresenter {
         }, mBanner)
                 //设置两个点图片作为翻页指示器，不设置则没有指示器
                 .setPageIndicator(new int[]{R.drawable.icon_point, R.drawable.icon_point_pre})
-                        //设置指示器的方向
+                //设置指示器的方向
                 .setPageIndicatorAlign(ConvenientBanner.PageIndicatorAlign.CENTER_HORIZONTAL);
     }
 
-    public void initVideo(){
+    public void initVideo() {
         VideoAdapter mVedioAdapter = new VideoAdapter(mContext, mVideo);
         mVedioAdapter.setOnItemClickListener(new VideoAdapter.OnItemClickListener() {
             @Override
@@ -84,11 +85,28 @@ public class HomePresenter {
             public void onItemLongClick(View view, int position) {
             }
         });
-        mIHomeView.getVideoRecyclerView().setAdapter(mVedioAdapter);
+        RecyclerView recyclerView = mIHomeView.getVideoRecyclerView();
+//        recyclerView.addOnItemTouchListener(new OnRecyclerItemClickListener(recyclerView) {
+//            @Override
+//            public void onItemClick(RecyclerView.ViewHolder vh) {
+//                int position = vh.getAdapterPosition();
+//                String path = mVideo.get(position).getHref();
+//                int id = mVideo.get(position).getId();
+//                if (path != null) {
+//                    mIHomeView.startToVideoActivty(id, path);
+//                }
+//            }
+//
+//            @Override
+//            public void onItemLongClick(RecyclerView.ViewHolder vh) {
+//
+//            }
+//        });
+        recyclerView.setAdapter(mVedioAdapter);
 
     }
 
-    public void initCultureBest(){
+    public void initCultureBest() {
         mHomeModel.getCultureBest(new Response.onCallBackListener<CultureBestBean>() {
             @Override
             public void onSuccess(CultureBestBean response) {

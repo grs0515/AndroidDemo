@@ -22,4 +22,8 @@ public final  class AppConst {
     public static final String EXTRA_DATA_INT = "extra_data_int";
     public static final String EXTRA_DATA_TITLE = "extra_data_title";
     public static final String SHQH_EVENT_ID = "SHQH_event_id";
+
+    public static final String KEY_INT = "key_int";
+    public static final String KEY_STRING = "key_string";
+    public static final String KEY_BOOLEAN = "key_boolean";
 }

@@ -1,4 +1,4 @@
-package com.cmcc.hyapps.KunlunTravel.home.holder;
+package com.cmcc.hyapps.KunlunTravel.mvp.holder;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -8,7 +8,7 @@ import android.widget.ImageView;
 import com.bigkoo.convenientbanner.holder.Holder;
 import com.cmcc.hyapps.KunlunTravel.R;
 import com.cmcc.hyapps.KunlunTravel.base.ImageManager;
-import com.cmcc.hyapps.KunlunTravel.home.bean.HomeBannerBean;
+import com.cmcc.hyapps.KunlunTravel.mvp.bean.HomeBannerBean;
 
 public class BannerHolder implements Holder<HomeBannerBean.BannerEntity> {
         private final Context mContent;

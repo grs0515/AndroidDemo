@@ -1,4 +1,4 @@
-package com.cmcc.hyapps.KunlunTravel.home.view;
+package com.cmcc.hyapps.KunlunTravel.mvp.view;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
