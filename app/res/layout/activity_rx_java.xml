@@ -5,7 +5,7 @@
     android:id="@+id/ll"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".rxjava.RxJavaActivity">
+    tools:context="com.grs.demo.rxjava.RxJavaActivity">
     <ImageView
         android:id="@+id/icon"
         android:layout_width="wrap_content"

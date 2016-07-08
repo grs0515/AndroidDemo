@@ -278,4 +278,7 @@
     <color name="statusbar_tan">#00000000</color>
     <color name="actionbar_bg">#FF0099CC</color>
     <color name="statusbar_bg">#FF006080</color>
+
+    <color name="tab_top_text_1">#aaa</color>
+    <color name="tab_top_text_2">#000</color>
 </resources>

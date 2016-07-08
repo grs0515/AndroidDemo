@@ -11,12 +11,11 @@ dependencies {
     compile files('libs/umeng-analytics-v5.6.4.jar')
     compile 'com.bigkoo:convenientbanner:2.0.4'
     compile 'com.google.code.gson:gson:2.2.4'
-    compile 'com.android.support:recyclerview-v7:22.2.1'
     compile 'com.android.support:design:22.2.1'
     compile 'io.reactivex:rxandroid:1.1.0'
     compile 'io.reactivex:rxjava:1.1.0'
     compile project(':pulltorefresh')
-    compile 'com.google.android.agera:agera:1.0.0-rc2'
+    compile project(':library')
 }
 
 android {
@@ -25,7 +24,7 @@ android {
     buildToolsVersion '21.1.2'
 
     defaultConfig {
-        applicationId "com.cmcc.hyapps.KunlunTravel"
+        applicationId "com.grs.demo"
         minSdkVersion 15
         targetSdkVersion 21
         versionCode 1
@@ -48,6 +47,7 @@ android {
             java.srcDirs = ['src']
             res.srcDirs = ['res']
             jniLibs.srcDirs = ['libs']
+            assets.srcDirs = ['assets']
         }
     }
     packagingOptions { // 打包配置

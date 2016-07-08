@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.grs.demo.widget.IndicatorView
+        android:id="@+id/iv"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+
+    </com.grs.demo.widget.IndicatorView>
+
+
+    <com.grs.demo.widget.PagerSlidingTabStrip
+        android:id="@+id/pst"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@+id/fv"
+        android:background="@color/white"
+        tools:pstsDividerColor="@android:color/darker_gray"
+        tools:pstsIndicatorColor="@color/green"
+        tools:pstsIndicatorHeight="3dp"
+        tools:pstsShouldExpand="true"
+        tools:pstsTabBackground="@android:color/transparent"
+        tools:pstsTabSelTextColor="@color/green"
+        tools:pstsTabTextColor="@android:color/darker_gray"
+        tools:pstsTabTextSize="13sp"
+        tools:pstsUnderlineColor="@android:color/darker_gray" />
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/vp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/pst">
+
+    </android.support.v4.view.ViewPager>
+</LinearLayout>

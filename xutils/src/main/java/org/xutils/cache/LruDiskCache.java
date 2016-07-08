@@ -64,7 +64,7 @@ public final class LruDiskCache {
 
     public LruDiskCache setMaxSize(long maxSize) {
         if (maxSize > 0L) {
-            long diskFreeSize = FileUtil.getDiskAvailableSize();
+            long diskFreeSize = FileUtil.getSDCardAvailableSize();
             if (diskFreeSize > maxSize) {
                 diskCacheSize = maxSize;
             } else {
