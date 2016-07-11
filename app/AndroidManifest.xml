@@ -146,8 +146,9 @@
 
         <activity android:name=".download.DownloadListActivity" />
         <activity android:name=".mvp.view.HomeActivity" />
+        <activity android:name=".mvp.view.ShopActivity" />
         <activity android:name=".rxjava.RxJavaActivity" />
-        <activity android:name=".indicator.IndicatorActivity"></activity>
+        <activity android:name=".indicator.IndicatorActivity"/>
     </application>
 
 </manifest>

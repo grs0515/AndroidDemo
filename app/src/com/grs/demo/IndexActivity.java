@@ -13,6 +13,7 @@ import android.widget.TextView;
 import com.grs.demo.base.BaseActivity;
 import com.grs.demo.download.DownloadListActivity;
 import com.grs.demo.mvp.view.HomeActivity;
+import com.grs.demo.mvp.view.ShopActivity;
 import com.grs.demo.rxjava.RxJavaActivity;
 import com.grs.demo.indicator.IndicatorActivity;
 
@@ -62,6 +63,7 @@ public class IndexActivity extends BaseActivity {
             HomeActivity.class,//mvp
             DownloadListActivity.class,
             RxJavaActivity.class,
-            IndicatorActivity.class
+            IndicatorActivity.class,
+            ShopActivity.class
     };
 }

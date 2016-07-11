@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:layout_marginTop="240dp"
+    android:orientation="vertical">
+
+    <ImageView
+        android:layout_width="@dimen/def_height"
+        android:layout_height="@dimen/def_height"
+        android:src="@drawable/iv_default" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="@string/network_timeout" />
+</LinearLayout>

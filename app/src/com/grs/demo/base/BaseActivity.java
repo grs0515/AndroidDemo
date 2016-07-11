@@ -11,6 +11,7 @@ import android.support.v4.util.ArrayMap;
 import com.umeng.analytics.MobclickAgent;
 import com.zhy.autolayout.AutoLayoutActivity;
 
+import org.xutils.common.util.LogUtil;
 import org.xutils.x;
 
 import java.io.Serializable;
@@ -34,7 +35,7 @@ public class BaseActivity extends AutoLayoutActivity {
     protected final static int LOAD_INIT = 2;
     protected final static int LOAD_MORE = 2;
     protected int limit = 10;
-    protected int offset = 1;
+    protected int offset = 0;
     public static final String PARAM_LIMIT = "limit";
     public static final String PARAM_OFFSET = "offset";
     public static final String PARAM_TYPE = "type";
@@ -46,16 +47,56 @@ public class BaseActivity extends AutoLayoutActivity {
         x.view().inject(this);
         //进出和退出动画
         overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
-        requestTag = getClass().getName();
         activity = this;
+        requestTag = getClass().getName();
         AppManager.getAppManager().addActivity(this);
+        //初始化方法－需严格按照顺序
+        initActionBar();
+        initRecyclerView();
+        addHeaderView();
+        addCustomLoadingView();
     }
+
+
+    //============================初始化===========================
+
+    /**
+     * 添加自定义的加载视图
+     */
+    protected void addCustomLoadingView() {
+
+    }
+
+    /**
+     * 添加头视图
+     */
+    protected void addHeaderView() {
+
+    }
+
+    /**
+     * 初始化RecyclerView
+     */
+    protected void initRecyclerView() {
+
+    }
+
+    /**
+     * 初始化action bar
+     */
+    protected void initActionBar() {
+    }
+
+
+//=========================生命周期=============================
 
     /**
      * 友盟  session的统计
      */
     @Override
     protected void onResume() {
+        LogUtil.e("requestTag:" + requestTag);
+        LogUtil.e("activity:" + activity.getLocalClassName());
         super.onResume();
         MobclickAgent.onResume(activity);
     }
@@ -68,6 +109,7 @@ public class BaseActivity extends AutoLayoutActivity {
 
     @Override
     public void finish() {
+        LogUtil.e("finish");
         overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
         super.finish();
     }
@@ -77,12 +119,19 @@ public class BaseActivity extends AutoLayoutActivity {
     protected void onStop() {
         super.onStop();
         //页面不可见时，取消所有的requestTag，RequestManager是什么呢？
-//        RequestManager.getInstance().cancelAll(requestTag);
+        RequestManager.getInstance().cancelRequest(requestTag);
     }
 
-//    protected void executeRequest(Request<?> request) {
-//        RequestManager.getInstance().addRequest(request, requestTag);
-//    }
+
+    @Override
+    protected void onDestroy() {
+        LogUtil.e("onDestroy");
+        super.onDestroy();
+        AppManager.getAppManager().finishActivity(activity);
+    }
+
+
+//===============================提供跳转================================
 
     /**
      * 提供跳转
@@ -104,28 +153,13 @@ public class BaseActivity extends AutoLayoutActivity {
         startActivity(intent);
     }
 
-    public String getIntentStringExtra() {
+    public String getStringExtra() {
         return getIntent().getStringExtra(AppConst.EXTRA_DATA_STRING);
-    }
-    public String getIntentIntExtra() {
-        return getIntent().getStringExtra(AppConst.EXTRA_DATA_INT);
-    }
-
-    /**
-     *  提供两个参数跳转传递String数据，Int数据
-     * @param cls
-     * @param args
-     * @param args1
-     */
-    public void startActivity(Class<?> cls, int args, String args1) {
-        Intent intent = new Intent(activity, cls);
-        intent.putExtra(AppConst.EXTRA_DATA_INT, args);
-        intent.putExtra(AppConst.EXTRA_DATA_STRING, args1);
-        startActivity(intent);
     }
 
     /**
      * 提供多个参数跳转传递(使用Map保存数据)
+     *
      * @param to
      * @param map
      */
@@ -149,6 +183,9 @@ public class BaseActivity extends AutoLayoutActivity {
             startActivity(intent);
         }
     }
+
+
+//===============================系统设置=================================
 
     /**
      * app字体不随系统字体变化

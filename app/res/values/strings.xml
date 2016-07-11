@@ -199,4 +199,5 @@
     <string name="remove">移除</string>
     <string name="stop">停止</string>
     <string name="start">开始下载</string>
+    <string name="shop_title">商户</string>
 </resources>

@@ -15,7 +15,6 @@ import com.grs.demo.support.FullyGridLayoutManager;
 import com.grs.demo.support.FullyLinearLayoutManager;
 import com.grs.demo.support.SpacesItemDecoration;
 import com.grs.demo.utils.common.ToastUtils;
-import com.grs.demo.utils.video.VideoActivity;
 
 import org.xutils.view.annotation.ContentView;
 import org.xutils.view.annotation.Event;
@@ -66,7 +65,7 @@ public class HomeActivity extends BaseActivity implements IHomeView {
     }
 
     @Override
-    public void initDatasSuccess() {
+    public void initDataSuccess(int type) {
         mHomePresenter.initBanner();
         mHomePresenter.initVideo();
         loading_progress.setVisibility(View.GONE);
@@ -74,7 +73,7 @@ public class HomeActivity extends BaseActivity implements IHomeView {
     }
 
     @Override
-    public void initDatasFailed() {
+    public void initDataFailed(int type) {
         loading_progress.setVisibility(View.GONE);
         reload_view.setVisibility(View.VISIBLE);
     }
@@ -127,7 +126,7 @@ public class HomeActivity extends BaseActivity implements IHomeView {
 
     @Override
     public void startToVideoActivty(int id, String path) {
-        startActivity(VideoActivity.class, id, path);
+//        startActivity(VideoActivity.class, id, path);
     }
 
     @Override

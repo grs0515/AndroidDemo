@@ -43,14 +43,14 @@ public class HomePresenter {
             public void onSuccess(HomeBannerBean response) {
                 mBanner = response.getBanner();
                 mVideo = response.getVideo();
-                mIHomeView.initDatasSuccess();
+                mIHomeView.initDataSuccess(0);
                 //第二次加载 文化精品
                 initCultureBest();
             }
 
             @Override
             public void onError(String error) {
-                mIHomeView.initDatasFailed();
+                mIHomeView.initDataFailed(0);
             }
         });
     }
@@ -67,6 +67,7 @@ public class HomePresenter {
                 .setPageIndicator(new int[]{R.drawable.icon_point, R.drawable.icon_point_pre})
                 //设置指示器的方向
                 .setPageIndicatorAlign(ConvenientBanner.PageIndicatorAlign.CENTER_HORIZONTAL);
+
     }
 
     public void initVideo() {

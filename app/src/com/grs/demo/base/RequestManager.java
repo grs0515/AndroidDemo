@@ -30,7 +30,17 @@ public final class RequestManager {
         return mInstance;
     }
 
-
+    /**
+     * 向服务器发送网络请求
+     *
+     * @param method        请求类型
+     * @param requestParams 请求参数
+     * @param cls           请求实体
+     * @param listener      成功监听
+     * @param errorListener 错误监听
+     * @param <T>           返回当前实体
+     * @return
+     */
     public <T> Callback.Cancelable sendGsonRequest(HttpMethod method, RequestParams requestParams, Class<T> cls, Response.onSuccessListener<T> listener,
                                                    Response.onErrorListener errorListener) {
         return this.sendGsonRequest(method, null, requestParams, cls, listener, errorListener);
@@ -51,20 +61,12 @@ public final class RequestManager {
     public <T> Callback.Cancelable sendGsonRequest(HttpMethod method, String url, RequestParams requestParams, Class<T> cls, final Response.onSuccessListener<T> listener,
                                                    final Response.onErrorListener errorListener) {
         Callback.Cancelable cancelable = null;
-        RequestParams params;
-        if (requestParams != null) {//判断是否有请求参数
-            params = requestParams;
-        } else {
-            params = new RequestParams(url);
-        }
+        RequestParams params = null;
+        params = checkRequestParams(url, requestParams, params);
+        if (params == null) return null;
         // 设置固定参数 params.addParameter("cityname", "海淀");
         //params.setHeader("");
         params.setConnectTimeout(TIMEOUT);//设置超时时间
-        if (url == null) {//打印URL
-            LogUtil.e(params.getUri());
-        } else {
-            LogUtil.e(url);
-        }
         if (method == HttpMethod.GET) {
             params.setMethod(HttpMethod.GET);
             cancelable = get(params, cls, listener, errorListener);
@@ -73,6 +75,27 @@ public final class RequestManager {
             cancelable = post(params, cls, listener, errorListener);
         }
         return cancelable;
+    }
+
+    //检查和打印Log
+    private RequestParams checkRequestParams(String url, RequestParams requestParams, RequestParams params) {
+        if (requestParams != null) {//判断是否有请求参数
+            if (requestParams.getUri() != null)
+                params = requestParams;
+            else
+                LogUtil.e("requestParams need add url! ");
+        } else {
+            if (url != null)
+                params = new RequestParams(url);
+            else
+                LogUtil.e("requestParams can not is null and URL can not is null! ");
+        }
+        if (url == null) {//打印URL
+            LogUtil.e(params.getUri());
+        } else {
+            LogUtil.e(url);
+        }
+        return params;
     }
 
     /**
@@ -85,7 +108,7 @@ public final class RequestManager {
         Callback.Cancelable cancelable = x.http().get(params, new Callback.CommonCallback<String>() {
             @Override
             public void onSuccess(String result) {
-                LogUtil.e(result);
+                LogUtil.e(result);//打印log
                 Gson gson = new Gson();
                 T t = gson.fromJson(result, cls);
                 listener.onSuccess(t);
@@ -93,12 +116,13 @@ public final class RequestManager {
 
             @Override
             public void onError(Throwable ex, boolean isOnCallback) {
+                LogUtil.e(ex.toString());
                 errorListener.onError(ex.toString() + ",isOnCallback is " + isOnCallback);
             }
 
             @Override
             public void onCancelled(CancelledException cex) {
-
+                LogUtil.e(cex.toString());
             }
 
             @Override
@@ -142,4 +166,7 @@ public final class RequestManager {
         return cancelable;
     }
 
+    public void cancelRequest(String requestTag) {
+
+    }
 }

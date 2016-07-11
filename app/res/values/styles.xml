@@ -26,5 +26,10 @@
         <item name="android:gravity">center</item>
         <item name="android:padding">13dp</item>
     </style>
-
+    <style name="bg">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:background">@color/background</item>
+        <item name="android:orientation">vertical</item>
+    </style>
 </resources>

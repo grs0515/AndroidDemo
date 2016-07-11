@@ -12,13 +12,13 @@ import org.xutils.common.util.LogUtil;
  */
 public class ServiceAPI {
     // 测试服务器
-    private static final String SERVER_BASE_TEST = "http://112.54.207.48/";
+    private static final String SERVER_BASE_TEST = "http://111.44.243.118/";
     // 正式服务器
     private static final String SERVER_BASE_PRODUCT = getURL();
     //服务器IP地址
     public static String ADDRESS = SERVER_BASE_TEST;
     //服务器URL
-    private static String URL = ADDRESS + "KunlunTravelAPI/";
+    private static String URL = ADDRESS + "api/";
 
     //常用
     public static final String PARAM_TYPE = "type";
@@ -44,6 +44,7 @@ public class ServiceAPI {
     public static final String PARAM_CITY = "city";
     public static final String PARAM_DIVIDE = "divice";
     public static final String PARAM_TITLE = "title";
+    public static final String PARAM_RECOMMEND = "recommend";
 
     //测试和正式服务开关
     public static void switchServer(boolean debug) {
@@ -51,36 +52,29 @@ public class ServiceAPI {
         LogUtil.e(ADDRESS);
     }
 
-    public static class QH {
+    public static class Base {
         public static String CONTENT = "content/";
         public static String GET_LIST = "getList.do";
+        public static String SHOPS = "shops/";
         public static String GET_CONTENT = "getcontent.do";
         public static String GET_DETAIL_ONE = "getDetailsOne.do";
         public static String GET_DETAIL_TWO = "getDetailsTwo.do";
         public static String GET_DETAIL_THREE = "getDetailsThree.do";
         public static String BUILD_MAIN = URL + "main/";
-        public static String BUILD_SHQH = URL + "shqh/";
-        public static String BUILD_YXQH = URL + "yxqh/";
-        public static String BUILD_HWQH = URL + "hwqh/";
-        public static String BUILD_MSMF = URL + "msmf/";
-        public static String BUILD_QHSJ = URL + "qhsj/";
-        public static String BUILD_QHBF = URL + "qhbf/";
-        public static String BUILD_ZZQH = URL + "zzqh/";
-        public static String BUILD_QHSY = URL + "qhsy/";
+        public static String SHOP_BANNER = URL + "shop_banners/";
+        public static String SHOP_RECOMMEND = URL + SHOPS;
         public static String BUILD_SCENIC = URL + "scenic/";
-        public static String BUILD_CONTENT = URL + CONTENT;
-
-        public static String getList() {//获取列表
-            return BUILD_CONTENT + GET_LIST;
-        }
+        public static String BUILD_ORDERING = "?ordering=";
 
         public static String getScenicList() {//获取列表
             return BUILD_SCENIC + GET_LIST;
         }
 
     }
+
     //首页
-    public static class Index extends QH {
+    public static class Index extends Base {
+
         public static String getIndex() {
             return BUILD_SCENIC + "index.do";
         }
@@ -89,11 +83,25 @@ public class ServiceAPI {
             return BUILD_SCENIC + "culture.do";
         }
     }
+
+    //商户
+    public static class Shop extends Base {
+
+        public static String getBanner() {
+            return SHOP_BANNER;
+        }
+
+        public static String getRecommend(String str) {
+            return SHOP_RECOMMEND + BUILD_ORDERING + str;
+        }
+    }
+
     /**
      * 获得多渠道打包指定的IP
+     *
      * @return
      */
-    public static String getURL(){
+    public static String getURL() {
         ApplicationInfo appInfo = null;
         try {
             appInfo = BaseApp.getContext().getPackageManager()
@@ -102,9 +110,9 @@ public class ServiceAPI {
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
         }
-        String server_ip=appInfo.metaData.getString("Server_IP");
-        if (server_ip==null){
-            server_ip="http://112.54.207.48/";
+        String server_ip = appInfo.metaData.getString("Server_IP");
+        if (server_ip == null) {
+            server_ip = "http://112.54.207.48/";
         }
         return server_ip;
     }
