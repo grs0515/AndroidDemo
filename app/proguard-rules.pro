@@ -251,3 +251,5 @@
 -keep public class com.tencent.** {*;}
 -keep class com.tencent.mm.sdk.modelmsg.WXMediaMessage {*;}
 -keep class com.tencent.mm.sdk.modelmsg.** implements com.tencent.mm.sdk.modelmsg.WXMediaMessage$IMediaObject {*;}
+
+-keep class com.iflytek.**{*;}

@@ -1,4 +1,4 @@
-package com.grs.demo.designMode.observer;
+package com.grs.demo.designmode.observer;
 
 /**
  * Created by gaoruishan on 16/5/26.

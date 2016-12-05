@@ -7,6 +7,7 @@ import com.grs.demo.utils.common.ToastUtils;
 import com.grs.demo.utils.netstate.NetChangeObserver;
 import com.grs.demo.utils.netstate.NetWorkUtil;
 import com.grs.demo.utils.netstate.NetworkStateReceiver;
+import com.iflytek.cloud.SpeechUtility;
 
 import org.xutils.common.util.LogUtil;
 import org.xutils.x;
@@ -18,7 +19,7 @@ import org.xutils.x;
  * Created by gaoruishan on 15/12/2.
  */
 public class BaseApp extends MultiDexApplication {
-
+    public static String mAuth_id;
     public static Context mContext;
     public static BaseApp mInstance;
 
@@ -31,6 +32,12 @@ public class BaseApp extends MultiDexApplication {
         switchDebug(AppConfig.DEBUG);
         //注册
         registerApp();
+        // 注意： appid 必须和下载的SDK保持一致，否则会出现10407错误
+        SpeechUtility.createUtility(this, "appid=" + "582e754e");
+
+        // 以下语句用于设置日志开关（默认开启），设置成false时关闭语音云SDK日志打印
+        // Setting.setShowLog(false);
+
     }
 
     /**

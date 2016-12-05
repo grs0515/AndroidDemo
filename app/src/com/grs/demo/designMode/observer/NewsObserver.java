@@ -1,4 +1,4 @@
-package com.grs.demo.designMode.observer;
+package com.grs.demo.designmode.observer;
 
 import java.util.Observable;
 import java.util.Observer;

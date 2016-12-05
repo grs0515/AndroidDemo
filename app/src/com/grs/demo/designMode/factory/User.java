@@ -1,4 +1,4 @@
-package com.grs.demo.designMode.factory;
+package com.grs.demo.designmode.factory;
 
 /**
  * 模型

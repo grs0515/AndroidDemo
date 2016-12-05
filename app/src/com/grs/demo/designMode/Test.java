@@ -1,13 +1,13 @@
-package com.grs.demo.designMode;
+package com.grs.demo.designmode;
 
-import com.grs.demo.designMode.factory.DaoFactory;
-import com.grs.demo.designMode.factory.User;
-import com.grs.demo.designMode.factory.Video;
-import com.grs.demo.designMode.observer.MyObservableImp;
-import com.grs.demo.designMode.observer.MyObserverImp;
-import com.grs.demo.designMode.observer.News;
-import com.grs.demo.designMode.observer.NewsObservable;
-import com.grs.demo.designMode.observer.NewsObserver;
+import com.grs.demo.designmode.factory.DaoFactory;
+import com.grs.demo.designmode.factory.User;
+import com.grs.demo.designmode.factory.Video;
+import com.grs.demo.designmode.observer.MyObservableImp;
+import com.grs.demo.designmode.observer.MyObserverImp;
+import com.grs.demo.designmode.observer.News;
+import com.grs.demo.designmode.observer.NewsObservable;
+import com.grs.demo.designmode.observer.NewsObserver;
 
 /**
  * Created by gaoruishan on 16/4/4.

@@ -14,7 +14,9 @@ dependencies {
     compile 'io.reactivex:rxjava:1.1.0'
     compile project(':pulltorefresh')
     compile project(':library')
-    
+    //    compile 'com.github.PhilJay:MPAndroidChart:v3.0.0'
+    compile files('libs/mpchartlib.jar')
+    compile files('libs/Msc.jar')
 }
 
 android {
@@ -113,8 +115,9 @@ def getDate() {
 }
 //获取清单文件版本名 androidManifest.xml
 def getVersionNameFromManifest() {
-    def manifestParser = new com.android.builder.core.DefaultManifestParser()
-    return manifestParser.getVersionName(android.sourceSets.main.manifest.srcFile)
+//    def manifestParser = new com.android.builder.core.DefaultManifestParser()
+//    return manifestParser.getVersionName(android.sourceSets.main.manifest.srcFile)
+    return ''
 }
 
 

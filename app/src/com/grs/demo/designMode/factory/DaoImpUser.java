@@ -1,4 +1,4 @@
-package com.grs.demo.designMode.factory;
+package com.grs.demo.designmode.factory;
 
 /**
  * Created by gaoruishan on 16/4/4.

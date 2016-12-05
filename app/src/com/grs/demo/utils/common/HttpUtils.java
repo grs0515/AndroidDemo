@@ -1,4 +1,5 @@
-package com.grs.demo.utils.common;
+
+import org.xutils.common.util.FileUtil;
 
 import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
@@ -8,6 +9,8 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
+
+import io.vov.vitamio.utils.FileUtils;
 
 /**
  * Http请求的工具类
