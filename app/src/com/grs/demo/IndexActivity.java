@@ -10,6 +10,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.grs.demo.andfix.AndFixActivity;
 import com.grs.demo.base.BaseActivity;
 import com.grs.demo.chart.ChartActivity;
 import com.grs.demo.download.DownloadListActivity;
@@ -18,6 +19,7 @@ import com.grs.demo.mvp.view.HomeActivity;
 import com.grs.demo.mvp.view.ShopActivity;
 import com.grs.demo.rxjava.RxJavaActivity;
 import com.grs.demo.sunfly.SunFlyActivity;
+import com.grs.demo.utils.video.VideoActivity;
 import com.grs.demo.verify.MixedVerifyActivity;
 
 import org.xutils.view.annotation.ContentView;
@@ -70,6 +72,8 @@ public class IndexActivity extends BaseActivity {
             ShopActivity.class,
             ChartActivity.class,
             SunFlyActivity.class,
-            MixedVerifyActivity.class
+            MixedVerifyActivity.class,
+            AndFixActivity.class,
+            VideoActivity.class
     };
 }

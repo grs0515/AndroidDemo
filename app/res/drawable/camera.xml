@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!--
+    你需要在drawable文件夹中右键，在弹出的菜单中选择Generate Android Selectors，
+    如下所示，它就会根据你的几个drawable文件夹里的资源的命名，帮你生成Selector代码。
+    当然，你的资源文件需要根据约定的后缀来命名。比如按下状态为_pressed，正常状态为_normal，不可用状态为_disable
+    -->
+    <item android:drawable="@drawable/camera_normal" android:state_pressed="false"/>
+    <item android:drawable="@drawable/camera_pressed" android:state_pressed="true"/>
+</selector>

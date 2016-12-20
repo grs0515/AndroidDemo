@@ -146,8 +146,8 @@
         <activity android:name=".chart.ChartActivity"/>
         <activity android:name=".indicator.IndicatorActivity"/>
         <activity
-            android:configChanges="mcc|mnc|locale|touchscreen|keyboard|keyboardHidden|navigation|orientation|screenLayout|fontScale"
-            android:name=".sunfly.SunFlyActivity"/>
+            android:name=".sunfly.SunFlyActivity"
+            android:configChanges="mcc|mnc|locale|touchscreen|keyboard|keyboardHidden|navigation|orientation|screenLayout|fontScale"/>
         <activity android:name=".sunfly.VoiceToTextActivity"/>
         <activity android:name=".sunfly.AsrActivityDemo"/>
         <activity android:name=".sunfly.TtsActivityDemo"/>
@@ -157,6 +157,14 @@
         <activity android:name=".sunfly.setting.TtsSettings"/>
         <activity android:name=".sunfly.setting.UnderstanderSettings"/>
         <activity android:name=".verify.MixedVerifyActivity"/>
+        <activity android:name=".template.GuideActivity">
+        </activity>
+        <activity android:name=".andfix.AndFixActivity">
+        </activity>
+        <activity android:name=".template.StartActivity">
+        </activity>
+        <activity android:name=".template.SlideTabActivity">
+        </activity>
     </application>
 
 </manifest>

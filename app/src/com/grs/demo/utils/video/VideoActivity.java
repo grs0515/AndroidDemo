@@ -19,13 +19,16 @@ package com.grs.demo.utils.video;
 
 import android.app.Activity;
 import android.content.Context;
-import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 import android.util.Log;
+import android.view.View;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.grs.demo.R;
 import com.grs.demo.base.AppConst;
+import com.grs.demo.utils.recorder.VoiceRecorder;
 
 import io.vov.vitamio.MediaPlayer;
 import io.vov.vitamio.Vitamio;
@@ -34,64 +37,126 @@ import io.vov.vitamio.widget.VideoView;
 
 public class VideoActivity extends Activity {
 
-    /**
-     * TODO: Set the path variable to a streaming video URL or a local media file
-     * path.
-     */
+	/**
+	 * TODO: Set the path variable to a streaming video URL or a local media file
+	 * path.
+	 */
 
-    private String path = "";
-    private int id;
+	public static final String TAG = "VideoActivity";
+	private String path = "";
+	private int id;
+	private VideoView mVideoView;
+	private EditText etUrl;
+	private VoiceRecorder recorder;
 
-    @Override
-    public void onCreate(Bundle icicle) {
-        super.onCreate(icicle);
+	@Override
+	public void onCreate(Bundle icicle) {
+		super.onCreate(icicle);
+		Vitamio.isInitialized(this);
+		setContentView(R.layout.activity_video);
+		id = getIntent().getIntExtra(AppConst.EXTRA_DATA_INT, 0);
+		path = getIntent().getStringExtra(AppConst.EXTRA_DATA_STRING);
+		etUrl = (EditText) findViewById(R.id.et_url);
+		recorder = new VoiceRecorder(this);
+	}
 
-        Vitamio.isInitialized(this);
-
-        setContentView(R.layout.videoview);
-        id = getIntent().getIntExtra(AppConst.EXTRA_DATA_INT,0);
-        path = getIntent().getStringExtra(AppConst.EXTRA_DATA_STRING);
-        playfunction();
-        Log.e("==", getPackageName() + ", " + Build.VERSION.SDK_INT);
-    }
-
-
-    void playfunction() {
-        VideoView mVideoView = (VideoView) findViewById(R.id.surface_view);
-//        path = Environment.getExternalStorageDirectory()
-//                + "/test.mp4";
+	/**
+	 * 播放本地视频
+	 */
+	public void startPlayLocal(View v) {
+		mVideoView = (VideoView) findViewById(R.id.surface_view);
+		path = Environment.getExternalStorageDirectory() + "/test.mp4";
 //		path ="rtsp://111.44.243.114/live/030101111000034-1/1";
 //		path="http://dlqncdn.miaopai.com/stream/MVaux41A4lkuWloBbGUGaQ__.mp4";
 //        path = "http://112.54.207.48/media/qhkl/model/201603/A72221CF7BDE4F698C6EFF215675DE97.mp4";
-        if (path == "") {
-            // Tell the user to provide a media file URL/path.
-            Toast.makeText(VideoActivity.this, "Please edit VideoActivity Activity, and set path" + " variable to your media file URL/path", Toast.LENGTH_LONG).show();
-            return;
-        } else {
-            mVideoView.setVideoPath(path);
+		if (path == "") {
+			// Tell the user to provide a media file URL/path.
+			Toast.makeText(VideoActivity.this, "Please edit VideoActivity Activity, and set path" + " variable to your media file URL/path", Toast.LENGTH_LONG).show();
+			return;
+		} else {
+			openVideoView();
+		}
+	}
+
+	//打开播放
+	private void openVideoView() {
+		mVideoView.setVideoPath(path);
 //            MediaController mediaController = new VideoMediaController(this);
-            mVideoView.setMediaController(new MediaController(this));
-            mVideoView.requestFocus();
-            mVideoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
-                @Override
-                public void onPrepared(MediaPlayer mediaPlayer) {
-                    // optional need Vitamio 4.0
-                    mediaPlayer.setPlaybackSpeed(1.0f);
-                }
-            });
-        }
-    }
+		mVideoView.setMediaController(new MediaController(this));
+		mVideoView.requestFocus();
+		mVideoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+			@Override
+			public void onPrepared(MediaPlayer mediaPlayer) {
+				// optional need Vitamio 4.0
+				mediaPlayer.setPlaybackSpeed(1.0f);
+			}
+		});
+	}
 
-   class VideoMediaController extends MediaController{
+	/**
+	 * 开始录音
+	 * @param v
+	 */
+	public void startRecorder(View v) {
+		recorder.startRecording(null);
+	}
 
-       public VideoMediaController(Context context) {
-           super(context);
-       }
+	/**
+	 * 复位录音
+	 * @param v
+	 */
+	public void stopRecorder(View v) {
+		recorder.discardRecording();
+	}
 
-       @Override
-       protected void startDownLoad() {
-           Log.e("==", "startDownLoad");
-       }
-   }
+	/**
+	 * 播放录音
+	 * @param v
+	 */
+	public void startPlayer(View v) {
+		recorder.startPlayVoice(recorder.getFilePath(), new VoiceRecorder.MediaPlayerCallback() {
+			@Override
+			public void onStart() {
+				Log.e(TAG, "onStart");
+			}
+
+			@Override
+			public void onStop() {
+				Log.e(TAG, "onStop");
+			}
+		});
+	}
+	/**
+	 * 停止播放
+	 * @param v
+	 */
+	public void stopPlayer(View v) {
+		recorder.stopPlayVoice();
+	}
+
+	/**
+	 * 播放URL视频
+	 * @param v
+	 */
+	public void startPlay(View v) {
+		if (mVideoView.isPlaying()) {
+			mVideoView.stopPlayback();
+		}
+		mVideoView = (VideoView) findViewById(R.id.surface_view);
+		path = etUrl.getText().toString();
+		openVideoView();
+	}
+
+	class VideoMediaController extends MediaController {
+
+		public VideoMediaController(Context context) {
+			super(context);
+		}
+
+		@Override
+		protected void startDownLoad() {
+			Log.e("==", "startDownLoad");
+		}
+	}
 
 }

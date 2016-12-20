@@ -9,14 +9,16 @@ dependencies {
     compile 'com.android.support:multidex:'
     compile files('libs/AMap_Location_v1.4.1_20150917.jar')
     compile files('libs/umeng-analytics-v5.6.4.jar')
-    compile 'com.bigkoo:convenientbanner:2.0.4'
-    compile 'io.reactivex:rxandroid:1.1.0'
-    compile 'io.reactivex:rxjava:1.1.0'
     compile project(':pulltorefresh')
     compile project(':library')
     //    compile 'com.github.PhilJay:MPAndroidChart:v3.0.0'
-    compile files('libs/mpchartlib.jar')
-    compile files('libs/Msc.jar')
+    compile files('libs/mpchartlib.jar')//图表
+    compile files('libs/Msc.jar')//讯飞语音
+    compile 'com.bigkoo:convenientbanner:2.0.4'
+    compile 'io.reactivex:rxandroid:1.1.0'
+    compile 'io.reactivex:rxjava:1.1.0'
+    compile 'com.jakewharton:butterknife:7.0.0'//快速生成@Bind
+    compile 'com.alipay.euler:andfix:0.5.0@aar' //热修复
 }
 
 android {
@@ -49,6 +51,7 @@ android {
             res.srcDirs = ['res']
             jniLibs.srcDirs = ['libs']
             assets.srcDirs = ['assets']
+            jni.srcDirs = ['src/main/jni', 'src/main/jni/']
         }
     }
     packagingOptions { // 打包配置
