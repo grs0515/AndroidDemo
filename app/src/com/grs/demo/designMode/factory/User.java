@@ -5,6 +5,7 @@ package com.grs.demo.designmode.factory;
  * Created by gaoruishan on 16/4/4.
  */
 public class User {
+
    private String name;
    private int age;
 

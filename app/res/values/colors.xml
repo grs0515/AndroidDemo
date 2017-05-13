@@ -281,4 +281,7 @@
 
     <color name="tab_top_text_1">#aaa</color>
     <color name="tab_top_text_2">#000</color>
+
+    <color name="button_normal">#44000000</color>
+    <color name="button_pressed">#AA000000</color>
 </resources>

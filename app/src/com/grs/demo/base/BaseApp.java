@@ -1,8 +1,12 @@
 package com.grs.demo.base;
 
+import android.app.Activity;
 import android.content.Context;
+import android.os.Bundle;
 import android.os.Environment;
 import android.support.multidex.MultiDexApplication;
+import android.util.Log;
+import android.view.WindowManager;
 
 import com.alipay.euler.andfix.patch.PatchManager;
 import com.grs.demo.utils.common.ToastUtils;
@@ -17,17 +21,32 @@ import org.xutils.x;
 import java.io.IOException;
 
 
+
 /**
  * Application 单例模式 生命周期最长,可进行初始化,数据传递,共享等
  * Created by gaoruishan on 15/12/2.
  */
 public class BaseApp extends MultiDexApplication {
 	private static final String APATCH_PATH = "/out.apatch";
+	private static final String TAG = getBaseApp().getClass().getSimpleName();
 	public static String mAuth_id;
 	public static Context mContext;
 	public static BaseApp mInstance;
 	private PatchManager mPatchManager;
+	/**
+	 * 创建全局变量
+	 * 全局变量一般都比较倾向于创建一个单独的数据类文件，并使用static静态变量
+	 *
+	 * 这里使用了在Application中添加数据的方法实现全局变量
+	 * 注意在AndroidManifest.xml中的Application节点添加android:name=".MyApplication"属性
+	 *
+	 */
+	private WindowManager.LayoutParams wmParams=new WindowManager.LayoutParams();
+	private Activity mCurrentActivity;
 
+	public WindowManager.LayoutParams getMywmParams(){
+		return wmParams;
+	}
 	@Override
 	public void onCreate() {
 		super.onCreate();
@@ -45,7 +64,50 @@ public class BaseApp extends MultiDexApplication {
 		//初始化热修复
 		initAndFix();
 
+		registerActivityLifecycleCallbacks(callback);
+
 	}
+	public Activity getCurrentActivity() {
+		return mCurrentActivity;
+	}
+
+	ActivityLifecycleCallbacks callback = new ActivityLifecycleCallbacks() {
+		@Override
+		public void onActivityCreated(Activity activity, Bundle savedInstanceState) {
+			Log.e(TAG, "onActivityCreated: "+activity.getClass().getSimpleName());
+		}
+
+		@Override
+		public void onActivityStarted(Activity activity) {
+			Log.e(TAG, "onActivityStarted: ");
+		}
+
+		@Override
+		public void onActivityResumed(Activity activity) {
+			mCurrentActivity = activity;
+			Log.e(TAG, "onActivityResumed: "+activity.getClass().getSimpleName());
+		}
+
+		@Override
+		public void onActivityPaused(Activity activity) {
+			Log.e(TAG, "onActivityPaused: ");
+		}
+
+		@Override
+		public void onActivityStopped(Activity activity) {
+			Log.e(TAG, "onActivityStopped: ");
+		}
+
+		@Override
+		public void onActivitySaveInstanceState(Activity activity, Bundle outState) {
+			Log.e(TAG, "onActivitySaveInstanceState: ");
+		}
+
+		@Override
+		public void onActivityDestroyed(Activity activity) {
+			Log.e(TAG, "onActivityDestroyed: ");
+		}
+	};
 
 	private void initAndFix() {
 		// initialize

@@ -62,10 +62,10 @@ public class Test {
 
     private static void testFactory() {
         User user = new User("张三", 22);
-        DaoFactory.getInstance().save(user);
+        DaoFactory.getInstance().getIDaoWithType(User.class).save(user);
 
         Video video = new Video("视频", "http://www.baidu.com", 22);
-        DaoFactory.getInstance().save(video);
+        DaoFactory.getInstance().getIDaoWithType(Video.class).save(video);
     }
 
 }

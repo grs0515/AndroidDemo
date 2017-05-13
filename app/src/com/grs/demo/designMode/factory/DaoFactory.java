@@ -7,20 +7,32 @@ package com.grs.demo.designmode.factory;
 public class DaoFactory {
 
 
-    private static DaoImpUser mInstance;
-    //不能实例话
-    private DaoFactory() {
-        throw new IllegalArgumentException("can't get a instance");
-    }
+	private static DaoFactory mInstance;
 
-    public static IDao getInstance(){
-        if (mInstance==null){//同步，防止多个线程同时
-            synchronized (DaoFactory.class){
-                if (mInstance==null){
-                    mInstance = new DaoImpUser();
-                }
-            }
-        }
-        return mInstance;
-    }
+	//不能实例话
+	private DaoFactory() {
+//		throw new IllegalArgumentException("can't get a instance");
+	}
+
+	public static DaoFactory getInstance() {
+		if (mInstance == null) {//同步，防止多个线程同时
+			synchronized (DaoFactory.class) {
+				if (mInstance == null) {
+					mInstance = new DaoFactory();
+				}
+			}
+		}
+		return mInstance;
+	}
+
+	public IDao getIDaoWithType(Class<?> cls) {
+		if (cls.equals(User.class)) {
+			return new DaoImpUser();
+		} else if (cls.equals(Video.class)) {
+			return new DaoImpVideo();
+		}
+
+		return null;
+	}
+
 }

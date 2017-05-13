@@ -6,19 +6,30 @@ dependencies {
     compile project(':vitamio')
     compile project(':xutils')
     compile project(':autolayout')
+    compile project(':vrlib')
     compile 'com.android.support:multidex:'
     compile files('libs/AMap_Location_v1.4.1_20150917.jar')
     compile files('libs/umeng-analytics-v5.6.4.jar')
     compile project(':pulltorefresh')
     compile project(':library')
     //    compile 'com.github.PhilJay:MPAndroidChart:v3.0.0'
-    compile files('libs/mpchartlib.jar')//图表
-    compile files('libs/Msc.jar')//讯飞语音
+    compile files('libs/mpchartlib.jar')
+    //图表
+    compile files('libs/Msc.jar')
+    //讯飞语音
+    //快速生成@Bind
+    //热修复
+    compile files('libs/nineoldandroids-2.4.0.jar')
+    //vr
     compile 'com.bigkoo:convenientbanner:2.0.4'
     compile 'io.reactivex:rxandroid:1.1.0'
     compile 'io.reactivex:rxjava:1.1.0'
-    compile 'com.jakewharton:butterknife:7.0.0'//快速生成@Bind
-    compile 'com.alipay.euler:andfix:0.5.0@aar' //热修复
+    compile 'com.jakewharton:butterknife:7.0.0'
+    compile 'com.alipay.euler:andfix:0.5.0@aar'
+    compile 'com.squareup.picasso:picasso:2.5.2'
+    compile 'tv.danmaku.ijk.media:ijkplayer-java:0.6.0'
+    compile 'tv.danmaku.ijk.media:ijkplayer-armv7a:0.6.0'
+    compile 'com.android.support.constraint:constraint-layout:1.0.1'
 }
 
 android {
@@ -68,8 +79,8 @@ android {
     }
     //解决MultiDex导致 Out of memory
     dexOptions {
-        incremental true
-        jumboMode = true
+//        incremental true
+//        jumboMode = true
         javaMaxHeapSize "2g"
     }
     //多渠道打包(赋值给AndroidManifest):生成不同IP
