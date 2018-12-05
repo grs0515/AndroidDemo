@@ -86,6 +86,5 @@ public class IndexActivity extends BaseActivity {
 			ClickActivity.class,
 			CarActivity.class,
 			BitmapPlayerActivity.class,
-			BitmapPlayerActivity.class,
 	};
 }

@@ -52,6 +52,10 @@ android {
                 includeCompileClasspath = true
             }
         }
+        //采用新的Jack(Java Android Compiler Kit)编译
+//        jackOptions {
+//            enabled true
+//        }
     }
     //签名配置
     signingConfigs {
@@ -117,6 +121,11 @@ android {
 //        }
 //
 //    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
 }
 //打包输出apk格式：app-formal/internal/stage-1.0.0-时间.apk
 //android.applicationVariants.all { variant ->
