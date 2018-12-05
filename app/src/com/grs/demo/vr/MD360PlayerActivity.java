@@ -114,7 +114,7 @@ public abstract class MD360PlayerActivity extends Activity {
 	private MDPosition logoPosition = MDMutablePosition.newInstance().setY(-8.0f).setYaw(-90.0f);
 
 	private MDPosition[] positions = new MDPosition[]{
-			MDPosition.newInstance().setZ(-8.0f).setYaw(-45.0f),
+			MDPosition.newInstance().setZ(-8.0f).setYaw(-45.0f),//视图-正中心
 			MDPosition.newInstance().setZ(-18.0f).setYaw(15.0f).setAngleX(15),
 			MDPosition.newInstance().setZ(-10.0f).setYaw(-10.0f).setAngleX(-15),
 			MDPosition.newInstance().setZ(-10.0f).setYaw(30.0f).setAngleX(30),
@@ -201,38 +201,40 @@ public abstract class MD360PlayerActivity extends Activity {
 		findViewById(R.id.button_add_plugin).setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				final int index = (int) (Math.random() * 100) % positions.length;
-				MDPosition position = positions[index];
-				MDHotspotBuilder builder = MDHotspotBuilder.create(mImageLoadProvider)
-						.size(4f, 4f)
-						.provider(0, activity, android.R.drawable.star_off)
-						.provider(1, activity, android.R.drawable.star_on)
-						.provider(10, activity, android.R.drawable.checkbox_off_background)
-						.provider(11, activity, android.R.drawable.checkbox_on_background)
-						.listenClick(new MDVRLibrary.ITouchPickListener() {
-							@Override
-							public void onHotspotHit(IMDHotspot hitHotspot, MDRay ray) {
-								if (hitHotspot instanceof MDWidgetPlugin) {
-									MDWidgetPlugin widgetPlugin = (MDWidgetPlugin) hitHotspot;
-									widgetPlugin.setChecked(!widgetPlugin.getChecked());
+//				final int index = (int) (Math.random() * 100) % positions.length;
+				for (int index = 0; index < positions.length; index++) {
+					MDPosition position = positions[index];
+					MDHotspotBuilder builder = MDHotspotBuilder.create(mImageLoadProvider)
+							.size(4f, 4f)
+							.provider(0, activity, android.R.drawable.star_off)
+							.provider(1, activity, android.R.drawable.star_on)
+							.provider(10, activity, android.R.drawable.checkbox_off_background)
+							.provider(11, activity, android.R.drawable.checkbox_on_background)
+							.listenClick(new MDVRLibrary.ITouchPickListener() {
+								@Override
+								public void onHotspotHit(IMDHotspot hitHotspot, MDRay ray) {
+									Log.e(TAG, "onHotspotHit: ray = "+ray.toString());
+									Toast.makeText(MD360PlayerActivity.this, "click plugin"+hitHotspot.getTitle(), Toast.LENGTH_SHORT).show();
+									if (hitHotspot instanceof MDWidgetPlugin) {
+										MDWidgetPlugin widgetPlugin = (MDWidgetPlugin) hitHotspot;
+										widgetPlugin.setChecked(!widgetPlugin.getChecked());
+									}
 								}
-							}
-						})
-						.title("star" + index)
-						.position(position)
-						.status(0, 1)
-						.checkedStatus(10, 11);
+							})
+							.title("star" + index)
+							.position(position)
+							.status(0, 1)
+							.checkedStatus(10, 11);
 
-				MDWidgetPlugin plugin = new MDWidgetPlugin(builder);
+					MDWidgetPlugin plugin = new MDWidgetPlugin(builder);
 
-				plugins.add(plugin);
-				getVRLibrary().addPlugin(plugin);
-				Log.e(TAG, "onClick:index =  " + index);
-				Log.e(TAG, "onClick:position =  " + position);
-				Toast.makeText(MD360PlayerActivity.this, "add plugin position:" + position, Toast.LENGTH_SHORT).show();
+					plugins.add(plugin);
+					getVRLibrary().addPlugin(plugin);
+				}
+//				Toast.makeText(MD360PlayerActivity.this, "add plugin position:" + position, Toast.LENGTH_SHORT).show();
 			}
 		});
-
+		//添加logo
 		findViewById(R.id.button_add_plugin_logo).setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -253,7 +255,7 @@ public abstract class MD360PlayerActivity extends Activity {
 				Toast.makeText(MD360PlayerActivity.this, "add plugin logo", Toast.LENGTH_SHORT).show();
 			}
 		});
-
+		//移除上一个
 		findViewById(R.id.button_remove_plugin).setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -263,7 +265,7 @@ public abstract class MD360PlayerActivity extends Activity {
 				}
 			}
 		});
-
+		//移除所有
 		findViewById(R.id.button_remove_plugins).setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -271,7 +273,7 @@ public abstract class MD360PlayerActivity extends Activity {
 				getVRLibrary().removePlugins();
 			}
 		});
-
+		//添加 热点区
 		findViewById(R.id.button_add_hotspot_front).setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -287,7 +289,7 @@ public abstract class MD360PlayerActivity extends Activity {
 				getVRLibrary().addPlugin(hotspot);
 			}
 		});
-
+		//移动 热点区
 		findViewById(R.id.button_rotate_to_camera_plugin).setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -297,12 +299,12 @@ public abstract class MD360PlayerActivity extends Activity {
 				}
 			}
 		});
-
+		//添加view
 		findViewById(R.id.button_add_md_view).setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				TextView textView = new TextView(activity);
-				textView.setBackgroundColor(0x55FFCC11);
+				textView.setBackgroundColor(0x55FF0000);
 				textView.setText("Hello world.");
 
 				MDViewBuilder builder = MDViewBuilder.create()
@@ -317,7 +319,7 @@ public abstract class MD360PlayerActivity extends Activity {
 				getVRLibrary().addPlugin(mdView);
 			}
 		});
-
+		//更新view
 		findViewById(R.id.button_update_md_view).setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {

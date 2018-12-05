@@ -1,12 +1,14 @@
+apply from: "config.gradle"
 //声明仓库源，默认是jcenter
 buildscript {
     //中央远程仓库
     repositories {
+        google()
         jcenter()
     }
     //声明Android gradle plugin的版本
     dependencies {
-        classpath 'com.android.tools.build:gradle:2.2.2'
+        classpath 'com.android.tools.build:gradle:3.1.3'
         classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.0'
         classpath 'com.github.dcendents:android-maven-gradle-plugin:1.5'
     }
@@ -14,8 +16,10 @@ buildscript {
 //声明了所有project默认的仓库源
 allprojects {
     repositories {
+        google()
         jcenter()
         mavenCentral()
+        maven { url "https://jitpack.io" }
     }
 }
 //声明了一个任务，任务名叫clean(任务类型是Delete,也可以是Copy)

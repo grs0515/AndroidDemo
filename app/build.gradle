@@ -3,47 +3,55 @@ apply plugin: 'com.android.application'
 //configurations { all*.exclude group: 'com.android.support', module: 'support-v4' }
 //configurations { all*.exclude group: 'com.android.support', module: 'support-annotations' }
 dependencies {
-    compile project(':vitamio')
-    compile project(':xutils')
-    compile project(':autolayout')
-    compile project(':vrlib')
-    compile 'com.android.support:multidex:'
-    compile files('libs/AMap_Location_v1.4.1_20150917.jar')
-    compile files('libs/umeng-analytics-v5.6.4.jar')
-    compile project(':pulltorefresh')
-    compile project(':library')
-    //    compile 'com.github.PhilJay:MPAndroidChart:v3.0.0'
-    compile files('libs/mpchartlib.jar')
+    api project(':vitamio')
+    api project(':xutils')
+    api project(':autolayout')
+    api project(':vrlib')
+    api 'com.android.support:multidex:1.0.3'
+    api files('libs/AMap_Location_v1.4.1_20150917.jar')
+    api files('libs/umeng-analytics-v5.6.4.jar')
+    api project(':pulltorefresh')
+    api project(':library')
+    //    api 'com.github.PhilJay:MPAndroidChart:v3.0.0'
+    api files('libs/mpchartlib.jar')
     //图表
-    compile files('libs/Msc.jar')
+    api files('libs/Msc.jar')
     //讯飞语音
     //快速生成@Bind
     //热修复
-    compile files('libs/nineoldandroids-2.4.0.jar')
+    api files('libs/nineoldandroids-2.4.0.jar')
     //vr
-    compile 'com.bigkoo:convenientbanner:2.0.4'
-    compile 'io.reactivex:rxandroid:1.1.0'
-    compile 'io.reactivex:rxjava:1.1.0'
-    compile 'com.jakewharton:butterknife:7.0.0'
-    compile 'com.alipay.euler:andfix:0.5.0@aar'
-    compile 'com.squareup.picasso:picasso:2.5.2'
-    compile 'tv.danmaku.ijk.media:ijkplayer-java:0.6.0'
-    compile 'tv.danmaku.ijk.media:ijkplayer-armv7a:0.6.0'
-    compile 'com.android.support.constraint:constraint-layout:1.0.1'
+    api 'com.bigkoo:convenientbanner:2.0.4'
+    api 'io.reactivex:rxandroid:1.1.0'
+    api 'io.reactivex:rxjava:1.1.0'
+    api 'com.jakewharton:butterknife:7.0.0'
+    api 'com.alipay.euler:andfix:0.5.0@aar'
+    api 'com.squareup.picasso:picasso:2.5.2'
+    api 'tv.danmaku.ijk.media:ijkplayer-java:0.6.0'
+    api 'tv.danmaku.ijk.media:ijkplayer-armv7a:0.6.0'
+    api 'com.android.support.constraint:constraint-layout:1.0.1'
 }
 
 android {
     //版本和默认配置
-    compileSdkVersion 21
-    buildToolsVersion '21.1.2'
+    compileSdkVersion rootProject.android.compileSdkVersion
+    buildToolsVersion rootProject.android.buildToolsVersion
 
     defaultConfig {
         applicationId "com.grs.demo"
-        minSdkVersion 15
-        targetSdkVersion 21
+        minSdkVersion rootProject.android.minSdkVersion
+        targetSdkVersion rootProject.android.targetSdkVersion
         versionCode 1
         versionName "1.0"
         multiDexEnabled true
+        //flavor dimension 它的维度就是该版本号，这样维度就是都是统一的了
+        flavorDimensions "versionCode"
+        //添加如下配置就OK了
+        javaCompileOptions {
+            annotationProcessorOptions {
+                includeCompileClasspath = true
+            }
+        }
     }
     //签名配置
     signingConfigs {
@@ -111,16 +119,16 @@ android {
 //    }
 }
 //打包输出apk格式：app-formal/internal/stage-1.0.0-时间.apk
-android.applicationVariants.all { variant ->
-    variant.outputs.each { output ->
-        def outputFile = output.outputFile
-        if (outputFile != null && outputFile.name.endsWith('.apk')) {
-            def releaseApkName = "-" + getVersionNameFromManifest() + "-" + getDate() + '.apk'
-            def fileName = outputFile.name.replace("-release.apk", releaseApkName)
-            output.outputFile = new File(outputFile.parent, fileName)
-        }
-    }
-}
+//android.applicationVariants.all { variant ->
+//    variant.outputs.each { output ->
+//        def outputFile = output.outputFile
+//        if (outputFile != null && outputFile.name.endsWith('.apk')) {
+//            def releaseApkName = "-" + getVersionNameFromManifest() + "-" + getDate() + '.apk'
+//            def fileName = outputFile.name.replace("-release.apk", releaseApkName)
+//            output.outputFile = new File(outputFile.parent, fileName)
+//        }
+//    }
+//}
 //获取日期格式
 def getDate() {
     def date = new Date()

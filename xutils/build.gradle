@@ -6,12 +6,12 @@ def gitUrl = 'https://github.com/wyouflf/xUtils3.git'
 group = "org.xutils"
 version = "3.1.2"
 android {
-    compileSdkVersion 21
-    buildToolsVersion '21.1.2'
+    compileSdkVersion rootProject.android.compileSdkVersion
+    buildToolsVersion rootProject.android.buildToolsVersion
 
     defaultConfig {
-        minSdkVersion 14
-        targetSdkVersion 21
+        minSdkVersion rootProject.android.minSdkVersion
+        targetSdkVersion rootProject.android.targetSdkVersion
         versionCode 20151123
         versionName version
     }

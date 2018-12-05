@@ -4,11 +4,11 @@ dependencies {
 }
 
 android {
-    compileSdkVersion 21
-    buildToolsVersion '21.1.2'
+    compileSdkVersion rootProject.android.compileSdkVersion
+    buildToolsVersion rootProject.android.buildToolsVersion
     defaultConfig {
-        minSdkVersion 15
-        targetSdkVersion 21
+        minSdkVersion rootProject.android.minSdkVersion
+        targetSdkVersion rootProject.android.targetSdkVersion
 //        minSdkVersion Integer.parseInt(project.BUILD_MIN_SDK_VERSION)
 //        targetSdkVersion Integer.parseInt(project.BUILD_TARGET_SDK_VERSION)
     }

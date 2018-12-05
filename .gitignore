@@ -49,3 +49,6 @@ captures/
 *.iml
 .idea/workspace.xml
 *.jks
+
+/gradle
+
