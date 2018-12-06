@@ -31,8 +31,9 @@
     <!-- 访问网络连接，可能产生GPRS流量 -->
     <uses-permission android:name="android.permission.INTERNET"/>
     <!-- 挂载、反挂载外部文件系统 -->
-    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"
-                     tools:ignore="ProtectedPermissions"/>
+    <uses-permission
+        android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"
+        tools:ignore="ProtectedPermissions"/>
     <!-- 允许程序获取当前或最近运行的应用 -->
     <uses-permission android:name="android.permission.GET_TASKS"/>
     <!-- 获取当前WiFi接入的状态以及WLAN热点的信息 -->
@@ -53,8 +54,9 @@
     <!-- 允许振动 -->
     <uses-permission android:name="android.permission.VIBRATE"/>
     <!-- 允许读写系统设置项 -->
-    <uses-permission android:name="android.permission.WRITE_SETTINGS"
-                     tools:ignore="ProtectedPermissions"/>
+    <uses-permission
+        android:name="android.permission.WRITE_SETTINGS"
+        tools:ignore="ProtectedPermissions"/>
     <!-- 接收短信 -->
     <uses-permission android:name="android.permission.RECEIVE_SMS"/>
     <!-- 显示系统窗口 -->
@@ -126,11 +128,11 @@
             android:value="Umeng"/>
         <!-- ==========================本地Activity============================= -->
         <!-- android:name=".home.view.HomeActivity" -->
-        <!--android:name=".IndexActivity"-->
+        <!-- android:name=".IndexActivity" -->
         <activity
             android:name=".IndexActivity"
-            android:screenOrientation="portrait"
-            android:launchMode="singleTask">
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
@@ -151,8 +153,9 @@
         <activity android:name=".rxjava.RxJavaActivity"/>
         <activity android:name=".chart.ChartActivity"/>
         <activity android:name=".indicator.IndicatorActivity"/>
-        <activity android:name=".sunfly.SunFlyActivity"
-                  android:configChanges="mcc|mnc|locale|touchscreen|keyboard|keyboardHidden|navigation|orientation|screenLayout|fontScale"/>
+        <activity
+            android:name=".sunfly.SunFlyActivity"
+            android:configChanges="mcc|mnc|locale|touchscreen|keyboard|keyboardHidden|navigation|orientation|screenLayout|fontScale"/>
         <activity android:name=".sunfly.VoiceToTextActivity"/>
         <activity android:name=".sunfly.AsrActivityDemo"/>
         <activity android:name=".sunfly.TtsActivityDemo"/>
@@ -170,9 +173,12 @@
         <activity android:name=".test.photo.PhotoActivity"/>
         <activity android:name=".test.ClickActivity"/>
         <activity android:name=".ball.CarActivity"/>
-        <activity android:name=".vr.BitmapPlayerActivity"
-                  android:screenOrientation="landscape"
-                  android:configChanges="screenSize|orientation" />
+        <activity
+            android:name=".vr.BitmapPlayerActivity"
+            android:configChanges="screenSize|orientation"
+            android:screenOrientation="landscape"/>
+        <activity android:name=".mvvm.test.MvvmActivity">
+        </activity>
     </application>
 
 </manifest>

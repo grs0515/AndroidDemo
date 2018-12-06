@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <!--注意：只要是在Java中需要导入包的类，这边都需要导入，如：Map、ArrayList 等
+    ，不过 java.lang 包里的类是可以不用导包的。-->
+    <data>
+        <import type="android.view.View"/>
+        <variable name="user" type="com.grs.demo.mvvm.test.User"/>
+        <variable name="user2" type="com.grs.demo.mvvm.test.User2"/>
+        <variable name="handle" type="com.grs.demo.mvvm.test.MyHandler"/>
+        <variable name="activity" type="com.grs.demo.mvvm.test.MvvmActivity"/>
+    </data>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{user.firstName}"/>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="@{handle.onClickBtn}"
+            android:text="@{user.lastName}"/>
+        <!--三元运算：注意：需要用到双引号的时候，外层的双引号改成单引号。-->
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text='@{user.show?"显示" : "隐藏"}'/>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="@{user.show?View.VISIBLE:View.GONE}"
+        />
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            app:image="@{user.url}"
+        />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{activity.mName}"/>
+
+        <View android:layout_width="match_parent" android:layout_height="2dp"
+              android:background="@color/base_bg"/>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{user2.firstName}"/>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{String.valueOf(user2.age)}"/>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{user2.list.get(0)}"/>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+    </LinearLayout>
+</layout>

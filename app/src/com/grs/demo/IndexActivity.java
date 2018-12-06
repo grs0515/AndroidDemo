@@ -18,6 +18,7 @@ import com.grs.demo.download.DownloadListActivity;
 import com.grs.demo.indicator.IndicatorActivity;
 import com.grs.demo.mvp.view.HomeActivity;
 import com.grs.demo.mvp.view.ShopActivity;
+import com.grs.demo.mvvm.test.MvvmActivity;
 import com.grs.demo.rxjava.RxJavaActivity;
 import com.grs.demo.sunfly.SunFlyActivity;
 import com.grs.demo.test.ClickActivity;
@@ -86,5 +87,6 @@ public class IndexActivity extends BaseActivity {
 			ClickActivity.class,
 			CarActivity.class,
 			BitmapPlayerActivity.class,
+			MvvmActivity.class,
 	};
 }

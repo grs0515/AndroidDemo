@@ -95,6 +95,5 @@ bintray {
 
 
 dependencies {
-    api fileTree(dir: 'libs', include: ['*.jar'])
-    api 'com.android.support:appcompat-v7:22.2.1'
+    implementation rootProject.ext.dependencies["appcompat_v7"]
 }
