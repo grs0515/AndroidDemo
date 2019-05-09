@@ -1,0 +1,13 @@
+一,项目结构
+    app:是主体项目
+    依赖:
+        adapter: 是BaseRecyclerViewAdapterHelper的源码
+        autolayout: 是AutoLayout使用px布局源码,有局限性
+        pulltorefresh: 是上拉加载下拉刷新库,老框架了
+        vitamio: 是视频播放框架,有版本限制
+        vrlib: 是VR库,图片转为全景
+        xutils: 是View,DB,Http,Image集成的库
+
+    baselib: 是基础库(资源+base)
+
+二,APP包说明

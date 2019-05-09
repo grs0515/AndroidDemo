@@ -8,6 +8,7 @@ import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v4.util.ArrayMap;
 
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.umeng.analytics.MobclickAgent;
 import com.zhy.autolayout.AutoLayoutActivity;
 
@@ -28,7 +29,7 @@ import java.io.Serializable;
  */
 public class BaseActivity extends AutoLayoutActivity {
     protected Activity activity;
-    protected String requestTag;
+    protected String TAG;
     protected static final int REQUECT_CODE_SDCARD = 100;
     protected static final int REQUECT_CODE = 110;
     protected static final int REFRESH = 1;
@@ -45,10 +46,12 @@ public class BaseActivity extends AutoLayoutActivity {
         super.onCreate(savedInstanceState);
         //在基类中注入
         x.view().inject(this);
+        //注入阿里router
+        ARouter.getInstance().inject(this);
         //进出和退出动画
         overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
         activity = this;
-        requestTag = getClass().getName();
+        TAG = getClass().getName();
         AppManager.getAppManager().addActivity(this);
         //初始化方法－需严格按照顺序
         initActionBar();
@@ -95,7 +98,7 @@ public class BaseActivity extends AutoLayoutActivity {
      */
     @Override
     protected void onResume() {
-        LogUtil.e("requestTag:" + requestTag);
+        LogUtil.e("requestTag:" + TAG);
         LogUtil.e("activity:" + activity.getLocalClassName());
         super.onResume();
         MobclickAgent.onResume(activity);
@@ -119,7 +122,7 @@ public class BaseActivity extends AutoLayoutActivity {
     protected void onStop() {
         super.onStop();
         //页面不可见时，取消所有的requestTag，RequestManager是什么呢？
-        RequestManager.getInstance().cancelRequest(requestTag);
+        RequestManager.getInstance().cancelRequest(TAG);
     }
 
 

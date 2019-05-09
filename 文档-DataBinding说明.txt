@@ -1,0 +1,81 @@
+
+1,Binding生成规则
+    默认生成规则：xml通过文件名生成，使用下划线分割大小写。
+    比如activity_demo.xml，则会生成ActivityDemoBinding，item_search_hotel则会生成ItemSearchHotelBinding。
+    view的生成规则类似，只是由于是类变量，首字母不是大写，比如有一个TextView的id是first_name，则会生成名为firstName的TextView。
+
+2,xml导入包
+    只要是在Java中需要导入包的类，这边都需要导入，如：Map、ArrayList 等;
+    不过 java.lang 包里的类是可以不用导包的。
+
+
+3,父布局中点击事件
+    android:onClick="@{(v)->model.clickItem(v,model)}"
+	public void clickItem(View view, MovieViewModel model) { }
+
+4,布局中引入
+    <include layout="@layout/movie_item_rating"
+             app:model="@{model}"/>
+
+5,https://github.com/hongyangAndroid/AndroidAutoLayout
+   //对于listview，注意添加这一行，即可在item上使用高度
+   AutoUtils.autoSize(convertView);
+   //对于RecyclerView
+   public ViewHolder(View itemView){
+         super(itemView);
+         AutoUtils.autoSize(itemView);
+    }
+
+6,自定义模板
+    https://www.jianshu.com/p/fa974a5dc2ff
+
+7,在布局中引入 <variable name="xx" type="" /> 必须对应的XxxxBinding 中 setXX(对象)
+
+8,图片加载
+    app:imageUrl="@{model.imageUrl}"
+    需要定义一个静态方法
+    @BindingAdapter({"imageUrl"})
+    public static void setImageUrl(ImageView view, String url) {
+    	ImageUtil.getInstance().setView(view).setUrl(url).build();
+    }
+
+9.EditText 文本输入监听
+    一般要导入<import type="android.text.Editable"/>
+            <import type="android.view.View"/>
+    android:afterTextChanged="@{(editable)->viewModel.onAfterTextChanged(editable,model)}"
+
+10,CheckBox 选择状态监听
+    android:onCheckedChanged="@{(v,bool)->viewModel.onCheckedChanged(v,bool,model)}"
+注: 一般布局中都有方法-->代码中对应的方法参数
+
+11,XML中设置background 不能用"#eee"
+    android:background="@{model.select?@color/choice_blue:@color/common_btn_bg_pressed}"
+    一种是:holder.itemBinding.llItem.setBackgroundColor(Color.parseColor(subjects.getBg()));
+    另一种是:public @ColorInt int getBg() {
+               String color = entity.select ? "#E3AF77" : "#2B2D94";
+               return Color.parseColor(color);
+            }
+
+12,
+  api.getMovies(start, count)
+  		//map 是对下一层的取值
+  		.map(new Func1<MainEntity, List<MainEntity.Subjects>>() {
+  			@Override
+  			public List<MainEntity.Subjects> call(MainEntity mainEntity) {
+  		  return mainEntity.subjects;
+		  	}
+		  })
+		  //flatMap 是对集合的遍历
+		  .flatMap(new Func1<List<MainEntity.Subjects>, Observable<MainEntity.Subjects>>() {
+		  	@Override
+		  	public Observable<MainEntity.Subjects> call(List<MainEntity.Subjects> movies) {
+		  		return Observable.from(movies);
+  			}
+  		})
+  		.subscribeOn(Schedulers.io())
+  		.observeOn(AndroidSchedulers.mainThread())
+  		.subscribe(subscriber);
+
+13,在TV中View的焦点: 向右按键不可移动 android:nextFocusRight="@id/ll_two" ....等方向控制
+焦点查找: public View focusSearch(View focused, int direction);
+Android焦点分发和移动的原理: https://www.jianshu.com/p/be7e84832632

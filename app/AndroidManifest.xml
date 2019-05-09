@@ -169,15 +169,28 @@
         <activity android:name=".andfix.AndFixActivity"/>
         <activity android:name=".template.StartActivity"/>
         <activity android:name=".template.SlideTabActivity"/>
-        <activity android:name=".test.TestDragActivity"/>
-        <activity android:name=".test.photo.PhotoActivity"/>
-        <activity android:name=".test.ClickActivity"/>
+        <activity android:name=".drag.TestDragActivity"/>
+        <activity android:name=".drag.photo.PhotoActivity"/>
+        <activity android:name=".drag.ClickActivity"/>
         <activity android:name=".ball.CarActivity"/>
+        <activity android:name=".UtilTestActivity"/>
         <activity
             android:name=".vr.BitmapPlayerActivity"
             android:configChanges="screenSize|orientation"
             android:screenOrientation="landscape"/>
-        <activity android:name=".mvvm.test.MvvmActivity">
+        <activity android:name=".mvvm.test.MvvmActivity"/>
+        <activity android:name=".mvvm.sample.view.SimpleMainActivity"/>
+        <activity android:name=".arouter.ARouterActivity">
+        </activity>
+        <activity android:name=".arouter.activity.ATestActivity">
+        </activity>
+        <activity android:name=".arouter.activity.ATestParamActivity">
+        </activity>
+        <activity android:name=".arouter.activity.AUriActivity">
+        </activity>
+        <activity android:name=".arouter.activity.InterceptActivity">
+        </activity>
+        <activity android:name=".web.WebActivity">
         </activity>
     </application>
 

@@ -9,8 +9,12 @@ android {
     defaultConfig {
         minSdkVersion rootProject.android.minSdkVersion
         targetSdkVersion rootProject.android.targetSdkVersion
-//        minSdkVersion Integer.parseInt(project.BUILD_MIN_SDK_VERSION)
-//        targetSdkVersion Integer.parseInt(project.BUILD_TARGET_SDK_VERSION)
+        //阿里路由- 每个module都添加
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [AROUTER_MODULE_NAME: project.getName()]
+            }
+        }
     }
     sourceSets {
         main {

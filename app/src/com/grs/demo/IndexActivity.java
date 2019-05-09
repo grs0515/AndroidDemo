@@ -11,22 +11,25 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.grs.demo.andfix.AndFixActivity;
+import com.grs.demo.arouter.ARouterActivity;
 import com.grs.demo.ball.CarActivity;
 import com.grs.demo.base.BaseActivity;
 import com.grs.demo.chart.ChartActivity;
 import com.grs.demo.download.DownloadListActivity;
+import com.grs.demo.drag.ClickActivity;
+import com.grs.demo.drag.TestDragActivity;
+import com.grs.demo.drag.photo.PhotoActivity;
 import com.grs.demo.indicator.IndicatorActivity;
 import com.grs.demo.mvp.view.HomeActivity;
 import com.grs.demo.mvp.view.ShopActivity;
+import com.grs.demo.mvvm.sample.view.SimpleMainActivity;
 import com.grs.demo.mvvm.test.MvvmActivity;
 import com.grs.demo.rxjava.RxJavaActivity;
 import com.grs.demo.sunfly.SunFlyActivity;
-import com.grs.demo.test.ClickActivity;
-import com.grs.demo.test.TestDragActivity;
-import com.grs.demo.test.photo.PhotoActivity;
 import com.grs.demo.utils.video.VideoActivity;
 import com.grs.demo.verify.MixedVerifyActivity;
 import com.grs.demo.vr.BitmapPlayerActivity;
+import com.grs.demo.web.WebActivity;
 
 import org.xutils.view.annotation.ContentView;
 
@@ -72,6 +75,7 @@ public class IndexActivity extends BaseActivity {
 
 	//添加Activity 到列表中
 	private Class[] CLAZZES = new Class[]{
+			UtilTestActivity.class,
 			HomeActivity.class,//mvp
 			DownloadListActivity.class,
 			RxJavaActivity.class,
@@ -85,8 +89,13 @@ public class IndexActivity extends BaseActivity {
 			TestDragActivity.class,
 			PhotoActivity.class,
 			ClickActivity.class,
+			// 3D汽车模型
 			CarActivity.class,
+			// vr全景
 			BitmapPlayerActivity.class,
 			MvvmActivity.class,
+			SimpleMainActivity.class,
+			ARouterActivity.class,
+			WebActivity.class,
 	};
 }

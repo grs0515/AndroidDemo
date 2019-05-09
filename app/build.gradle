@@ -1,4 +1,6 @@
 apply plugin: 'com.android.application'
+//引入插件
+//apply plugin: 'com.tencent.tinker.patch'
 //configurations { all*.exclude group: 'com.android.support', module: 'support-v4' }
 //configurations { all*.exclude group: 'com.android.support', module: 'support-annotations' }
 dependencies {
@@ -12,7 +14,16 @@ dependencies {
     implementation rootProject.ext.dependencies["support_annotations"]
     implementation rootProject.ext.dependencies["gson"]
 
+    implementation rootProject.ext.dependencies["arouter_api"]
+    implementation rootProject.ext.dependencies["agentweb"]
 
+    //阿里ARouter
+    annotationProcessor rootProject.ext.dependencies["arouter_compiler"]
+    //腾讯热修复
+    //optional, help to generate the final application
+//    compileOnly 'com.tencent.tinker:tinker-android-anno:1.9.1'
+    //tinker's main Android lib
+//    implementation 'com.tencent.tinker:tinker-android-lib:1.9.1'
 
     //依赖
     api project(':vitamio')
@@ -23,7 +34,7 @@ dependencies {
     api files('libs/AMap_Location_v1.4.1_20150917.jar')
     api files('libs/umeng-analytics-v5.6.4.jar')
     api project(':pulltorefresh')
-    api project(':library')
+    api project(':adapter')
     //    api 'com.github.PhilJay:MPAndroidChart:v3.0.0'
     api files('libs/mpchartlib.jar')
     //图表
@@ -45,6 +56,8 @@ dependencies {
     api 'com.squareup.picasso:picasso:2.5.2'
     api 'tv.danmaku.ijk.media:ijkplayer-java:0.6.0'
     api 'tv.danmaku.ijk.media:ijkplayer-armv7a:0.6.0'
+
+
 }
 
 android {
@@ -71,6 +84,12 @@ android {
 //        jackOptions {
 //            enabled true
 //        }
+        //阿里路由- 每个module都添加
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [AROUTER_MODULE_NAME: project.getName()]
+            }
+        }
     }
     //签名配置
     signingConfigs {

@@ -21,7 +21,7 @@
             android:stretchMode="columnWidth"
             android:verticalSpacing="10dp" />
 
-        <com.grs.demo.test.photo.HackyViewPager
+        <com.grs.demo.drag.photo.HackyViewPager
             android:id="@+id/expanded_image"
             android:layout_width="match_parent"
             android:layout_height="match_parent"

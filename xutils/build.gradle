@@ -14,6 +14,12 @@ android {
         targetSdkVersion rootProject.android.targetSdkVersion
         versionCode 20151123
         versionName version
+        //阿里路由- 每个module都添加
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [AROUTER_MODULE_NAME: project.getName()]
+            }
+        }
     }
     buildTypes {
         release {
