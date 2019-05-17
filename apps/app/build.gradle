@@ -26,15 +26,15 @@ dependencies {
 //    implementation 'com.tencent.tinker:tinker-android-lib:1.9.1'
 
     //依赖
-    api project(':vitamio')
-    api project(':xutils')
-    api project(':autolayout')
-    api project(':vrlib')
+    api project(':libraries:vitamio')
+    api project(':libraries:xutils')
+    api project(':libraries:autolayout')
+    api project(':libraries:vrlib')
     api 'com.android.support:multidex:1.0.3'
     api files('libs/AMap_Location_v1.4.1_20150917.jar')
     api files('libs/umeng-analytics-v5.6.4.jar')
-    api project(':pulltorefresh')
-    api project(':adapter')
+    api project(':libraries:pulltorefresh')
+    api project(':libraries:adapter')
     //    api 'com.github.PhilJay:MPAndroidChart:v3.0.0'
     api files('libs/mpchartlib.jar')
     //图表

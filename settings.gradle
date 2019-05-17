@@ -1,4 +1,13 @@
+include ':apps',
+        ':apps:app',
+        ':apps:app2'
+
 include ':baselib'
-include 'vitamio','xutils', ':autolayout', ':pulltorefresh', ':adapter'
-include 'app'
-include 'vrlib'
+
+include ':libraries',
+        ':libraries:vrlib',
+        ':libraries:xutils',
+        ':libraries:vitamio',
+        ':libraries:autolayout',
+        ':libraries:pulltorefresh',
+        ':libraries:adapter'
