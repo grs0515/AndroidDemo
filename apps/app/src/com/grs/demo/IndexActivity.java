@@ -24,6 +24,8 @@ import com.grs.demo.mvp.view.HomeActivity;
 import com.grs.demo.mvp.view.ShopActivity;
 import com.grs.demo.mvvm.sample.view.SimpleMainActivity;
 import com.grs.demo.mvvm.test.MvvmActivity;
+import com.grs.demo.notification.NotificationActivity;
+import com.grs.demo.qmui.TestQMUIActivity;
 import com.grs.demo.rxjava.RxJavaActivity;
 import com.grs.demo.sunfly.SunFlyActivity;
 import com.grs.demo.utils.video.VideoActivity;
@@ -97,5 +99,7 @@ public class IndexActivity extends BaseActivity {
 			SimpleMainActivity.class,
 			ARouterActivity.class,
 			WebActivity.class,
+			TestQMUIActivity.class,
+			NotificationActivity.class
 	};
 }

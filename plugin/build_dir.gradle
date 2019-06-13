@@ -1,0 +1,60 @@
+/**
+ * 创建任务task
+ */
+//采用 简单方式创建
+task myTask1 {
+    println "doLast in task1"
+    doLast {
+
+    }
+}
+//采用 Project.task(String name) 方法来创建 测试: 进入当前目录,执行gradle myTask1
+project.task("myTask2").doLast {
+    println "doLast in task2"
+}
+
+//采用 TaskContainer.create(String name) 方法来创建 测试: 进入当前目录,执行gradle myTask2
+project.tasks.create("myTask3").doLast {
+    println "doLast in task3"
+}
+
+
+//定义一个闭包: { 变量-> 代码... }
+def createDirTest = { path ->
+    File file = new File(path);
+    if (!file.exists()) {
+        file.mkdirs();
+    }
+}
+
+def static createDir(pathArray) {
+    //变量.forEach{ 变量-> 代码... }
+    pathArray.forEach { path ->
+        File file = new File(path);
+        if (!file.exists()) {
+            file.mkdirs();
+        }
+    }
+}
+
+
+task makeJavaDir {
+    def paths = ['src/test/java', 'src/androidTest/java']
+    doFirst {
+        println "----makeJavaDir--doFirst"
+        createDir(paths)
+    }
+    doLast {
+        println "----makeJavaDir--doLast"
+    }
+}
+
+task makeWebDir {
+    //依赖makeJavaDir任务
+    dependsOn 'makeJavaDir'
+    def paths = ['src/main/webapp']
+    doLast {
+        println "----makeWebDir--doLast"
+        createDir(paths)
+    }
+}

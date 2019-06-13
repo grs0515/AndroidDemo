@@ -1,0 +1,38 @@
+
+//==========================================================
+//============================自定义插件=====================
+//==========================================================
+
+
+//把插件写在build.gradle文件中,这种是最简单的插件开发方式。
+class GreetingPluginExtension {
+    String message = "Hello from GreetingPlugin"
+}
+
+
+class GreetingPlugin implements Plugin<Project> {
+
+    @Override
+    void apply(Project project) {
+        //第一个参数greeting是我们自定义配置的DSL名字，第二个参数是参数类的名字。
+        def extension = project.extensions.create('greeting', GreetingPluginExtension)
+        //这个插件创建了一个名为hello的task，并在task中打印了GreetingPluginExtension#message的内容。
+        project.task('hello') {
+            doLast {
+                println extension.message
+            }
+        }
+    }
+}
+
+//应用插件，这样插件才能在gradle构建过程中生效。
+//测试执行:gradle hello
+apply plugin: GreetingPlugin
+
+//android DSL的动态参数配置greeting数据
+greeting {
+    message = "I am dynamic message11111"
+}
+
+
+

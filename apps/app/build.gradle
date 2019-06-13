@@ -43,7 +43,9 @@ dependencies {
 
     api files('libs/nineoldandroids-2.4.0.jar')
 
-
+    implementation rootProject.ext.dependencies["qmui"]
+    implementation rootProject.ext.dependencies["arch"]
+    implementation rootProject.ext.dependencies["notificationLib"]
 }
 
 android {
@@ -80,10 +82,10 @@ android {
     //签名配置
     signingConfigs {
         config {
-            storeFile file('cmcckeystore')
-            storePassword 'cmcc1234'
-            keyAlias 'cmcckeystore'
-            keyPassword 'cmcc1234'
+            keyAlias 'sign'
+            keyPassword '123456'
+            storeFile file('../../config/sign.keystore')
+            storePassword '123456'
         }
     }
     //

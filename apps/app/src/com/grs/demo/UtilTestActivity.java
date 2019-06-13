@@ -2,6 +2,7 @@ package com.grs.demo;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.TextView;
@@ -12,6 +13,7 @@ import com.grs.demo.annotation.FindUtil;
 import com.grs.demo.annotation.FindView;
 import com.grs.demo.fragment.TestFragment;
 import com.grs.demo.utils.common.RestartAPPTool;
+import com.grs.demo.utils.common.ToastUtils;
 
 /**
  * @author:gaoruishan
@@ -35,6 +37,10 @@ public class UtilTestActivity extends AppCompatActivity  {
         FindUtil.inject(this);
         button.setText("测试11");
         tv.setText("测试22");
+        String what = getIntent().getStringExtra("what");
+        if(!TextUtils.isEmpty(what)){
+            ToastUtils.show(this,what);
+        }
 //
         // 开启fragment
 //		FindViewUtil.addFragment(this,R.id.container_fragment, TestFragment.class);

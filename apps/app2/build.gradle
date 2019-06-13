@@ -1,6 +1,10 @@
 apply plugin: 'com.android.application'
+apply from: '../../plugin/build_plugin.gradle'
+apply from: "../../plugin/build_extra.gradle"
+apply from: "../../plugin/build_dir.gradle"
 
 android {
+
     compileSdkVersion rootProject.android.compileSdkVersion
     buildToolsVersion rootProject.android.buildToolsVersion
 
@@ -14,27 +18,13 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
     }
+    greeting {
+        message = "I am dynamic message"
+    }
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-        }
-    }
-    //定义一个装apk文件路径的数组
-    def fileArray = []
-    android.applicationVariants.all { variant ->
-        variant.outputs.all { output ->
-            def outputFile = output.outputFile
-            if (outputFile != null && outputFile.name.contains('release')) {
-                //获取每个打包产物
-                def variantProd = variant.productFlavors[0]
-                def fileName = "testname_${variantProd.versionName}_${variantProd.versionCode}" + "_${variantProd.name}.apk"
-                println "自定义输出apk的名字:" + fileName;
-                outputFileName = fileName;
-                println "输出apk地址:" + outputFile.parentFile.absolutePath + java.io.File.separator + fileName
-                fileArray.add(outputFile.parentFile.absolutePath + java.io.File.separator + fileName);
-            }
-
         }
     }
 
@@ -68,37 +58,24 @@ android {
         }
     }
 
+}
 
-    build {
-        doLast() {
-            println "任务1编译打包完成后需要复制apk的数量:" + fileArray.size()
-            forEachFile(fileArray)
-        }
+/**
+ * 当bulid被添加执行时调用
+ */
+tasks.whenTaskAdded { task ->
+    println '----执行了---'+task.name
+    if (task.name.equals("signingReport")) {
+        println '----最后---'+task.name
     }
-
-
+}
+//build评估之后调用 在android.applicationVariants.all之后
+afterEvaluate {
+    println "----执行了---afterEvaluate"
+//    tasks.findByName('assembleDebug').finalizedBy(createSharedDependency)
 }
 
 
-def forEachFile(fileArray) {
-    fileArray.forEach { file ->
-        //遍历进行文件操作
-        println "任务3遍历apk文件"
-        rename_and_moveout_apk(file)
-    }
-}
-
-
-def rename_and_moveout_apk(orignalFile) {
-    def intoFile = rootDir.getAbsolutePath() + File.separator + "apk"
-    copy {
-        from orignalFile
-        into intoFile
-        println "任务4复制apk到指定位置:" + intoFile
-        rename("${android.defaultConfig.versionName}_${android.defaultConfig.versionCode}_", "")
-        println "任务5修改apk的命名"
-    }
-}
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
@@ -108,6 +85,7 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    //Java Library 存放jar包的库
+//    implementation project(':plugin')
 }
-
 

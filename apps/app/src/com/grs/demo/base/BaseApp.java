@@ -15,6 +15,7 @@ import com.grs.demo.utils.netstate.NetChangeObserver;
 import com.grs.demo.utils.netstate.NetWorkUtil;
 import com.grs.demo.utils.netstate.NetworkStateReceiver;
 import com.iflytek.cloud.SpeechUtility;
+import com.qmuiteam.qmui.arch.QMUISwipeBackActivityManager;
 
 import org.xutils.common.util.LogUtil;
 import org.xutils.x;
@@ -77,6 +78,7 @@ public class BaseApp extends MultiDexApplication {
 		ARouter.init(this);
 		// 尽可能早，推荐在Application中初始化
 
+		QMUISwipeBackActivityManager.init(this);
 	}
 	public Activity getCurrentActivity() {
 		return mCurrentActivity;

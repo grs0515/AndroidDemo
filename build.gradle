@@ -28,4 +28,7 @@ allprojects {
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
-
+//project构建最后执行
+task doLast() {
+    println "------project  doLast"
+}

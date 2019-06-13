@@ -1,0 +1,10 @@
+
+使用说明:(禁止删除,禁止添加忽略文件)
+
+第一种:先设置为library,然后点击最右侧栏"Gradle"-->找对应依赖库-->Tasks-->build-->运行buildRelease编译,最后手动拷贝AAR
+
+第二种:
+1,适用于在commlibs 文件下的依赖库
+2,每个依赖库build.gradle需添加输出AAR: apply from: '../../build_copy.gradle'
+3,点击最右侧栏"Gradle"-->找对应依赖库-->Tasks-->build-->运行build编译
+4,如果只打指定aar,需在setting.gradle中注释掉其他的aar输出

@@ -192,6 +192,10 @@
         </activity>
         <activity android:name=".web.WebActivity">
         </activity>
+        <activity android:name=".notification.NotificationActivity">
+        </activity>
+        <activity android:name=".qmui.TestQMUIActivity">
+        </activity>
     </application>
 
 </manifest>
