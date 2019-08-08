@@ -129,6 +129,7 @@
         <!-- ==========================本地Activity============================= -->
         <!-- android:name=".home.view.HomeActivity" -->
         <!-- android:name=".IndexActivity" -->
+
         <activity
             android:name=".IndexActivity"
             android:launchMode="singleTask"

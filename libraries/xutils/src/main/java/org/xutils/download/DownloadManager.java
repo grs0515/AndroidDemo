@@ -66,6 +66,9 @@ public final class DownloadManager {
     public void updateDownloadInfo(DownloadInfo info) throws DbException {
         db.update(info);
     }
+    public void saveDownloadInfo(DownloadInfo info) throws DbException {
+        db.saveBindingId(info);
+    }
 
     public int getDownloadListCount() {
         return downloadInfoList.size();

@@ -1,8 +1,12 @@
 apply plugin: 'java-library'
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    api fileTree(include: ['*.jar'], dir: 'libs')
+    api 'com.squareup:javapoet:1.9.0'
+    api 'com.google.auto.service:auto-service:1.0-rc3'
+    api 'com.google.auto:auto-common:0.8'
+    api project(':javaLib')
 }
 
-sourceCompatibility = "7"
-targetCompatibility = "7"
+sourceCompatibility = "1.7"
+targetCompatibility = "1.7"

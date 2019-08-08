@@ -51,6 +51,7 @@ def renameAndMoveApk(orignalFile) {
 
 build {
     doLast() {
+        println "----执行了---build"
         copyForEachFile(fileArray)
     }
 }

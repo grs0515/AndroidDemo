@@ -2,6 +2,7 @@ package com.grs.demo;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,6 +29,7 @@ import com.grs.demo.notification.NotificationActivity;
 import com.grs.demo.qmui.TestQMUIActivity;
 import com.grs.demo.rxjava.RxJavaActivity;
 import com.grs.demo.sunfly.SunFlyActivity;
+;
 import com.grs.demo.utils.video.VideoActivity;
 import com.grs.demo.verify.MixedVerifyActivity;
 import com.grs.demo.vr.BitmapPlayerActivity;
@@ -45,6 +47,19 @@ public class IndexActivity extends BaseActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		/**
+		 * ClassLoader的类型:PathClassLoader和BootClassLoader
+		 */
+		ClassLoader classLoader = getClassLoader();
+		if (classLoader != null) {
+			//dalvik.system.PathClassLoader[DexPathList[[zip file "/data/app/com.grs.demo-1/base.apk"],nativeLibraryDirectories=[/data/app/com.grs.demo-1/lib/arm64, /data/app/com.grs.demo-1/base.apk!/lib/arm64-v8a, /system/lib64, /vendor/lib64]]]
+			Log.e(TAG, "(IndexActivity.java:51) " + classLoader.toString());
+			while (classLoader.getParent() != null) {
+				classLoader = classLoader.getParent();
+				//java.lang.BootClassLoader@b9e7216
+				Log.e(TAG,"(IndexActivity.java:54) "+classLoader.toString());
+			}
+		}
 		mInflater = LayoutInflater.from(this);
 
 		mListView = (ListView) findViewById(R.id.id_listview);

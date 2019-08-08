@@ -1,4 +1,4 @@
-package com.grs.lib.compiler;
+package com.grs.libcompiler;
 
 import com.squareup.javapoet.JavaFile;
 import com.squareup.javapoet.TypeName;

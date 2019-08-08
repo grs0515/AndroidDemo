@@ -1,9 +1,9 @@
-package com.grs.lib.compiler;
+package com.grs.libcompiler;
 
 import com.google.auto.service.AutoService;
-import com.grs.lib.compiler.annotations.AppRegisterGenerator;
-import com.grs.lib.compiler.annotations.EntryGenerator;
-import com.grs.lib.compiler.annotations.PayEntryGenerator;
+import com.grs.lib.annotations.AppRegisterGenerator;
+import com.grs.lib.annotations.EntryGenerator;
+import com.grs.lib.annotations.PayEntryGenerator;
 
 import java.lang.annotation.Annotation;
 import java.util.LinkedHashSet;

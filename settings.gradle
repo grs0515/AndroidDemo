@@ -1,6 +1,10 @@
+
 include ':apps',
+        ':javaLib',
+        ':libCompiler',
         ':apps:app',
-        ':apps:app2'
+        ':apps:app2',
+        ':apps:tinker'
 
 include ':baselib'
 
@@ -10,4 +14,5 @@ include ':libraries',
         ':libraries:vitamio',
         ':libraries:autolayout',
         ':libraries:pulltorefresh',
-        ':libraries:adapter'
+        ':libraries:adapter',
+        ':libraries:lib_tinker'

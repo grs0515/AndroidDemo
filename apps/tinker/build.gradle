@@ -1,0 +1,129 @@
+apply plugin: 'com.android.application'
+apply from: '../../libraries/lib_tinker/tinkerpatch.gradle'
+
+
+/**
+ * Tinker 接入指南
+ * https://github.com/Tencent/tinker/wiki/Tinker-%E6%8E%A5%E5%85%A5%E6%8C%87%E5%8D%97
+ */
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    //base
+    api project(':baselib')
+
+    api project(':libraries:lib_tinker')
+    annotationProcessor("com.tencent.tinker:tinker-android-anno:${TINKER_VERSION}") {
+        changing = true
+    }
+    compileOnly("com.tencent.tinker:tinker-android-anno:${TINKER_VERSION}") { changing = true }
+
+    //use to test multiDex
+//    implementation group: 'com.google.guava', name: 'guava', version: '19.0'
+//    implementation "org.scala-lang:scala-library:2.11.7"
+}
+
+
+def javaVersion = JavaVersion.VERSION_1_7
+
+android {
+    //版本和默认配置
+    compileSdkVersion rootProject.android.compileSdkVersion
+    buildToolsVersion rootProject.android.buildToolsVersion
+
+    compileOptions {
+        sourceCompatibility javaVersion
+        targetCompatibility javaVersion
+    }
+    //recommend
+    dexOptions {
+        jumboMode = true
+    }
+
+    signingConfigs {
+        release {
+            try {
+                keyAlias 'sign'
+                keyPassword '123456'
+                storeFile file('../../config/sign.keystore')
+                storePassword '123456'
+            } catch (ex) {
+                throw new InvalidUserDataException(ex.toString())
+            }
+        }
+    }
+
+    defaultConfig {
+        applicationId "com.grs.tinker"
+        minSdkVersion rootProject.android.minSdkVersion
+        targetSdkVersion rootProject.android.targetSdkVersion
+        versionCode 1
+        versionName "1.0.0"
+//        /**
+//         * you can use multiDex and install it in your ApplicationLifeCycle implement
+//         */
+//        multiDexEnabled true
+//        /**
+//         * buildConfig can change during patch!
+//         * we can use the newly value when patch
+//         */
+//        buildConfigField "String", "MESSAGE", "\"I am the base apk\""
+////        buildConfigField "String", "MESSAGE", "\"I am the patch apk\""
+//        /**
+//         * client version would update with patch
+//         * so we can get the newly git version easily!
+//         */
+//        buildConfigField "String", "TINKER_ID", "\"1.0.0\""
+//        buildConfigField "String", "PLATFORM", "\"all\""
+    }
+
+//    aaptOptions{
+//        additionalParameters "--emit-ids", "${project.file('public.txt')}"
+//        cruncherEnabled false
+//    }
+
+//    //use to test flavors support
+//    productFlavors {
+//        flavor1 {
+//            applicationId 'tinker.sample.android.flavor1'
+//        }
+//
+//        flavor2 {
+//            applicationId 'tinker.sample.android.flavor2'
+//        }
+//    }
+
+    buildTypes {
+        release {
+            minifyEnabled true
+            signingConfig signingConfigs.release
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), project.file('proguard-rules.pro')
+        }
+        debug {
+            debuggable true
+            minifyEnabled false
+            signingConfig signingConfigs.release
+        }
+    }
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']
+        }
+    }
+}
+
+
+task sortPublicTxt() {
+    doLast {
+        File originalFile = project.file("public.txt")
+        File sortedFile = project.file("public_sort.txt")
+        List<String> sortedLines = new ArrayList<>()
+        originalFile.eachLine {
+            sortedLines.add(it)
+        }
+        Collections.sort(sortedLines)
+        sortedFile.delete()
+        sortedLines.each {
+            sortedFile.append("${it}\n")
+        }
+    }
+}

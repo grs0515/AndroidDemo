@@ -21,11 +21,6 @@ dependencies {
     api project(':baselib')
     //阿里ARouter
     annotationProcessor rootProject.ext.dependencies["arouter_compiler"]
-    //腾讯热修复
-    //optional, help to generate the final application
-//    compileOnly 'com.tencent.tinker:tinker-android-anno:1.9.1'
-    //tinker's main Android lib
-//    implementation 'com.tencent.tinker:tinker-android-lib:1.9.1'
 
     //依赖
     api project(':libraries:vitamio')
@@ -46,6 +41,7 @@ dependencies {
     implementation rootProject.ext.dependencies["qmui"]
     implementation rootProject.ext.dependencies["arch"]
     implementation rootProject.ext.dependencies["notificationLib"]
+
 }
 
 android {
@@ -115,7 +111,7 @@ android {
     dexOptions {
 //        incremental true
 //        jumboMode = true
-        javaMaxHeapSize "2g"
+        javaMaxHeapSize "4g"
     }
     //多渠道打包(赋值给AndroidManifest):生成不同IP
     productFlavors {
@@ -175,3 +171,5 @@ def getVersionNameFromManifest() {
 //    return manifestParser.getVersionName(android.sourceSets.main.manifest.srcFile)
     return ''
 }
+
+

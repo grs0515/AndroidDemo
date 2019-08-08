@@ -16,11 +16,11 @@ public class MakeUtils {
 
     private static final String XML_BASE_DPI = "<dimen name=\"base_dpi\">%ddp</dimen>\r\n";
     // 最大生成的数值
-    private static final int MAX_SIZE = 720;
+    private static final int MAX_SIZE = 640;
     // 字体最大生成的数值
     private static int MAX_SIZE_SP = 50;
     // 减少资源,分界值
-    private static int divideNum = 420;
+    private static int divideNum = 375;
 
     /**
      * 生成的文件名

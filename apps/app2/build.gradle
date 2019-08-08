@@ -9,7 +9,7 @@ android {
     buildToolsVersion rootProject.android.buildToolsVersion
 
     defaultConfig {
-        applicationId "com.grs.app"
+        applicationId "com.grs.app2"
         minSdkVersion rootProject.android.minSdkVersion
         targetSdkVersion rootProject.android.targetSdkVersion
         versionCode 1
@@ -57,7 +57,9 @@ android {
             signingConfig signingConfigs.sign
         }
     }
-
+    dexOptions {
+        javaMaxHeapSize "4g"
+    }
 }
 
 /**
@@ -74,7 +76,13 @@ afterEvaluate {
     println "----执行了---afterEvaluate"
 //    tasks.findByName('assembleDebug').finalizedBy(createSharedDependency)
 }
-
+build {
+    doLast() {
+        println "----执行了---assemble"
+//        dependsOn 'copyApk'
+//        copyForEachFile(fileArray)
+    }
+}
 
 
 dependencies {
@@ -86,6 +94,7 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     //Java Library 存放jar包的库
-//    implementation project(':plugin')
+    compileOnly project(':javaLib')
+    annotationProcessor project(':libCompiler')
 }
 

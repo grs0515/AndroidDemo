@@ -1,7 +1,8 @@
 package com.grs.app2.generators;
 
-import com.flj.latte.annotations.EntryGenerator;
-import com.flj.latte.wechat.templates.WXEntryTemplate;
+
+import com.grs.app2.templates.WXEntryTemplate;
+import com.grs.lib.annotations.EntryGenerator;
 
 /**
  * Created by 傅令杰 on 2017/4/22
@@ -9,7 +10,7 @@ import com.flj.latte.wechat.templates.WXEntryTemplate;
 
 @SuppressWarnings("unused")
 @EntryGenerator(
-        packageName = "com.diabin.fastec.example",
+        packageName = "com.grs.app2",
         entryTemplate = WXEntryTemplate.class
 )
 public interface WeChatEntry {

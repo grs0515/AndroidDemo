@@ -8,6 +8,7 @@ import org.xutils.http.HttpMethod;
 import org.xutils.http.RequestParams;
 import org.xutils.x;
 
+import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -17,11 +18,11 @@ import java.util.Map;
  */
 public final class RequestManager {
     public static final int TIMEOUT = 5000;
-    private static RequestManager mInstance = new RequestManager();
     private final static Map<String, Callback.Cancelable> map = new HashMap<String, Callback.Cancelable>();
+    private static RequestManager mInstance = new RequestManager();
 
     private RequestManager() {
-         /* cannot be instantiated */
+        /* cannot be instantiated */
 //        throw new UnsupportedOperationException("cannot be instantiated");
     }
 
@@ -32,7 +33,6 @@ public final class RequestManager {
 
     /**
      * 向服务器发送网络请求
-     *
      * @param method        请求类型
      * @param requestParams 请求参数
      * @param cls           请求实体
@@ -48,7 +48,6 @@ public final class RequestManager {
 
     /**
      * 向服务器发送网络请求
-     *
      * @param method        请求类型
      * @param url           服务器URL
      * @param requestParams 请求参数
@@ -63,7 +62,9 @@ public final class RequestManager {
         Callback.Cancelable cancelable = null;
         RequestParams params = null;
         params = checkRequestParams(url, requestParams, params);
-        if (params == null) return null;
+        if (params == null) {
+            return null;
+        }
         // 设置固定参数 params.addParameter("cityname", "海淀");
         //params.setHeader("");
         params.setConnectTimeout(TIMEOUT);//设置超时时间
@@ -80,15 +81,17 @@ public final class RequestManager {
     //检查和打印Log
     private RequestParams checkRequestParams(String url, RequestParams requestParams, RequestParams params) {
         if (requestParams != null) {//判断是否有请求参数
-            if (requestParams.getUri() != null)
+            if (requestParams.getUri() != null) {
                 params = requestParams;
-            else
+            } else {
                 LogUtil.e("requestParams need add url! ");
+            }
         } else {
-            if (url != null)
+            if (url != null) {
                 params = new RequestParams(url);
-            else
+            } else {
                 LogUtil.e("requestParams can not is null and URL can not is null! ");
+            }
         }
         if (url == null) {//打印URL
             LogUtil.e(params.getUri());
@@ -100,7 +103,6 @@ public final class RequestManager {
 
     /**
      * 异步get
-     *
      * @param params
      */
     private <T> Callback.Cancelable get(RequestParams params, final Class<T> cls, final Response.onSuccessListener<T> listener,
@@ -135,7 +137,6 @@ public final class RequestManager {
 
     /**
      * 异步post
-     *
      * @param params
      */
     private <T> Callback.Cancelable post(RequestParams params, final Class<T> cls, final Response.onSuccessListener<T> listener,
@@ -168,5 +169,71 @@ public final class RequestManager {
 
     public void cancelRequest(String requestTag) {
 
+    }
+
+    /**
+     * 发送下载文件请求
+     * @param url
+     * @param mFilePtch
+     * @param callback
+     */
+    public void sendFileRequest(String url, String mFilePtch, FileCallback callback) {
+        // mDownloadUrl为JSON从服务器端解析出来的下载地址
+        RequestParams requestParams = new RequestParams(url);
+        // 为RequestParams设置文件下载后的保存路径
+        requestParams.setSaveFilePath(mFilePtch);
+        // 下载完成后自动为文件命名
+        requestParams.setAutoRename(false);
+        x.http().get(requestParams, new Callback.ProgressCallback<File>() {
+            @Override
+            public void onWaiting() {
+
+            }
+
+            @Override
+            public void onStarted() {
+
+            }
+
+            @Override
+            public void onLoading(long total, long current, boolean isDownloading) {
+                if (callback != null) {
+                    callback.onLoading(total, current, isDownloading);
+                }
+            }
+
+            @Override
+            public void onSuccess(File result) {
+                LogUtil.e("下载成功");
+                if (callback != null) {
+                    callback.onSuccess(result);
+                }
+            }
+
+            @Override
+            public void onError(Throwable ex, boolean isOnCallback) {
+                LogUtil.e("下载失败");
+                if (callback != null) {
+                    callback.onError(ex,isOnCallback);
+                }
+            }
+
+            @Override
+            public void onCancelled(CancelledException cex) {
+            }
+
+            @Override
+            public void onFinished() {
+
+            }
+        });
+    }
+
+  public   interface FileCallback {
+        void onSuccess(File result);
+
+      void onLoading(long total, long current, boolean isDownloading);
+
+        void onError(Throwable ex, boolean isOnCallback);
     }
 }

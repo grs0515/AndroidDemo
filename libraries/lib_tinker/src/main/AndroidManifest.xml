@@ -1,0 +1,17 @@
+<manifest package="com.lib.tinker"
+          xmlns:android="http://schemas.android.com/apk/res/android">
+
+<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+
+<application
+    android:icon="@mipmap/ic_launcher"
+    android:label="@string/app_name"
+    android:theme="@style/AppTheme">
+    <service
+        android:name=".service.SampleResultService"
+        android:permission="android.permission.BIND_JOB_SERVICE"
+        android:exported="false"/>
+</application>
+
+</manifest>

@@ -1,14 +1,15 @@
 package com.grs.app2.generators;
 
-import com.flj.latte.annotations.AppRegisterGenerator;
-import com.flj.latte.wechat.templates.AppRegisterTemplate;
+
+import com.grs.app2.templates.AppRegisterTemplate;
+import com.grs.lib.annotations.AppRegisterGenerator;
 
 /**
  * Created by 傅令杰 on 2017/4/22
  */
 @SuppressWarnings("unused")
 @AppRegisterGenerator(
-        packageName = "com.diabin.fastec.example",
+        packageName = "com.grs.app2",
         registerTemplate = AppRegisterTemplate.class
 )
 public interface AppRegister {
