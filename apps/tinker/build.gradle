@@ -17,6 +17,7 @@ dependencies {
     }
     compileOnly("com.tencent.tinker:tinker-android-anno:${TINKER_VERSION}") { changing = true }
 
+//    implementation 'com.blankj:utilcode:1.25.7'
     //use to test multiDex
 //    implementation group: 'com.google.guava', name: 'guava', version: '19.0'
 //    implementation "org.scala-lang:scala-library:2.11.7"
@@ -58,22 +59,6 @@ android {
         targetSdkVersion rootProject.android.targetSdkVersion
         versionCode 1
         versionName "1.0.0"
-//        /**
-//         * you can use multiDex and install it in your ApplicationLifeCycle implement
-//         */
-//        multiDexEnabled true
-//        /**
-//         * buildConfig can change during patch!
-//         * we can use the newly value when patch
-//         */
-//        buildConfigField "String", "MESSAGE", "\"I am the base apk\""
-////        buildConfigField "String", "MESSAGE", "\"I am the patch apk\""
-//        /**
-//         * client version would update with patch
-//         * so we can get the newly git version easily!
-//         */
-//        buildConfigField "String", "TINKER_ID", "\"1.0.0\""
-//        buildConfigField "String", "PLATFORM", "\"all\""
     }
 
 //    aaptOptions{
@@ -96,7 +81,6 @@ android {
         release {
             minifyEnabled true
             signingConfig signingConfigs.release
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), project.file('proguard-rules.pro')
         }
         debug {
             debuggable true
@@ -112,18 +96,3 @@ android {
 }
 
 
-task sortPublicTxt() {
-    doLast {
-        File originalFile = project.file("public.txt")
-        File sortedFile = project.file("public_sort.txt")
-        List<String> sortedLines = new ArrayList<>()
-        originalFile.eachLine {
-            sortedLines.add(it)
-        }
-        Collections.sort(sortedLines)
-        sortedFile.delete()
-        sortedLines.each {
-            sortedFile.append("${it}\n")
-        }
-    }
-}

@@ -44,10 +44,10 @@ android {
 
 }
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar','*.aar'])
+    api fileTree(dir: 'libs', include: ['*.jar','*.aar'])
 
     api("com.tencent.tinker:tinker-android-lib:${TINKER_VERSION}") { changing = true }
-    //okttp依赖
+    implementation 'com.google.code.gson:gson:2.8.2'
 
     // Maven local cannot handle transist dependencies.
     api("com.tencent.tinker:tinker-android-loader:${TINKER_VERSION}") {

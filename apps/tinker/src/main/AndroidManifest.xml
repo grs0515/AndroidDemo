@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="com.grs.tinker">
+          xmlns:tools="http://schemas.android.com/tools" package="com.grs.tinker">
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -8,6 +8,11 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.CAMERA" />
+    <!-- 屏幕唤醒 -->
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <!-- 屏幕熄灭 -->
+    <uses-permission android:name="android.permission.DEVICE_POWER"
+                     tools:ignore="ProtectedPermissions"/>
     <application
         android:name=".App"
         android:allowBackup="true"
@@ -24,11 +29,15 @@
             </intent-filter>
         </activity>
 
-        <!--<service-->
-            <!--android:name=".tinker.TinkerService"-->
-            <!--android:enabled="true"-->
-            <!--android:exported="false" />-->
-
+        <!--<provider-->
+            <!--android:authorities="com.grs.tinker.fileprovider"-->
+            <!--android:name="android.support.v4.content.FileProvider"-->
+            <!--android:exported="false"-->
+            <!--android:grantUriPermissions="true">-->
+            <!--<meta-data-->
+                <!--android:name="android.support.FILE_PROVIDER_PATHS"-->
+                <!--android:resource="@" />-->
+        <!--</provider>-->
         <!--<service android:name=".tinker.CustomPatchService" />-->
         <!-- 友盟统计相关meta-data -->
         <!--<meta-data-->

@@ -73,7 +73,12 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/showInfo"
         android:layout_alignParentStart="true"
+        android:textColor="@color/color1"
         android:layout_alignParentLeft="true"
-        android:text="测试"/>
-
+        android:text="@string/test"/>
+<ImageView
+    android:layout_alignParentBottom="true"
+    android:src="@drawable/app_delete_icon"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"/>
 </RelativeLayout>

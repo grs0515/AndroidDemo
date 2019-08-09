@@ -18,7 +18,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.lib.tinker.app.BuildInfo;
 import com.lib.tinker.util.Utils;
@@ -37,24 +36,23 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        askForRequiredPermissions();
         setContentView(R.layout.activity_main);
-//        TinkerService.runTinkerService(this);
-        Log.e(TAG, "i am on onCreate classloader:" + MainActivity.class.getClassLoader().toString());
         //test resource change
-        Log.e(TAG, "i am on onCreate string:" + getResources().getString(R.string.test_resource));
-        Log.e(TAG, "i am on patch onCreate 修改bug");
-        Log.e(TAG, "i am on patch onCreate 修改bug");
-        Log.e(TAG, "i am on patch onCreate 修改bug");
-
         mTvMessage = findViewById(R.id.tv_message);
 
-        askForRequiredPermissions();
+
         findViewById(R.id.test).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                String s = "成功";
-                String s = null;
-                Toast.makeText(MainActivity.this, s, Toast.LENGTH_SHORT).show();
+                Log.e(TAG, "i am on patch onCreate 修改bug");
+                Log.e(TAG, "i am on patch onCreate 修改bug");
+                Log.e(TAG, "i am on patch onCreate 修改bug");
+
+                String s = "成功";
+//                String s = null;
+                TestUtil.show(MainActivity.this,s);
+
             }
         });
 
@@ -121,6 +119,7 @@ public class MainActivity extends AppCompatActivity {
         if (!hasRequiredPermissions()) {
             ActivityCompat.requestPermissions(this, new String[] {Manifest.permission.READ_EXTERNAL_STORAGE}, 0);
         }
+        ActivityCompat.requestPermissions(this, new String[] {Manifest.permission.INTERNET}, 0);
     }
 
     private boolean hasRequiredPermissions() {
