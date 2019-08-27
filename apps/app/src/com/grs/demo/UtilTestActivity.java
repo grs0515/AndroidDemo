@@ -7,13 +7,13 @@ import android.util.Log;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.grs.demo.annotation.FindEvent;
-import com.grs.demo.annotation.FindFragment;
 import com.grs.demo.annotation.FindUtil;
-import com.grs.demo.annotation.FindView;
 import com.grs.demo.fragment.TestFragment;
 import com.grs.demo.utils.common.RestartAPPTool;
 import com.grs.demo.utils.common.ToastUtils;
+import com.grs.lib.annotations.find.FindEvent;
+import com.grs.lib.annotations.find.FindFragment;
+import com.grs.lib.annotations.find.FindView;
 
 /**
  * @author:gaoruishan

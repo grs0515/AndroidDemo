@@ -15,4 +15,5 @@ include ':libraries',
         ':libraries:autolayout',
         ':libraries:pulltorefresh',
         ':libraries:adapter',
-        ':libraries:lib_tinker'
+        ':libraries:lib_tinker',
+        ':libraries:lib_web'

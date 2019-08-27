@@ -9,6 +9,10 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 
+import com.grs.lib.annotations.find.FindEvent;
+import com.grs.lib.annotations.find.FindFragment;
+import com.grs.lib.annotations.find.FindView;
+
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 

@@ -10,9 +10,9 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.grs.demo.R;
-import com.grs.demo.annotation.FindEvent;
-import com.grs.demo.annotation.FindView;
 import com.grs.demo.annotation.FindUtil;
+import com.grs.lib.annotations.find.FindEvent;
+import com.grs.lib.annotations.find.FindView;
 
 /**
  * @author:gaoruishan

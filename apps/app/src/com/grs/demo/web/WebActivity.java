@@ -94,7 +94,7 @@ public class WebActivity extends BaseActivity {
      * @param url
      */
     private void initWebView(LinearLayout linearLayout, String url) {
-        mAgentWeb = AgentWeb.with(this)//
+        mAgentWeb = AgentWeb.with(this)
                 //传入AgentWeb的父控件。
                 .setAgentWebParent(linearLayout, -1, new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT))
                 //设置进度条颜色与高度，-1为默认值，高度为2，单位为dp。

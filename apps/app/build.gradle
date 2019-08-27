@@ -29,6 +29,10 @@ dependencies {
     api project(':libraries:vrlib')
     api project(':libraries:pulltorefresh')
     api project(':libraries:adapter')
+
+    api project(':javaLib')
+
+
     api files('libs/AMap_Location_v1.4.1_20150917.jar')
     api files('libs/umeng-analytics-v5.6.4.jar')
 

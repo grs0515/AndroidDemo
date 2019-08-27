@@ -96,5 +96,7 @@ dependencies {
     //Java Library 存放jar包的库
     compileOnly project(':javaLib')
     annotationProcessor project(':libCompiler')
+
+    api project(':libraries:lib_web')
 }
 
