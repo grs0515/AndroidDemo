@@ -17,30 +17,32 @@ dependencies {
     api 'tv.danmaku.ijk.media:ijkplayer-java:0.6.0'
     api 'tv.danmaku.ijk.media:ijkplayer-armv7a:0.6.0'
     api 'com.jakewharton:butterknife:7.0.0'
+    implementation rootProject.ext.dependencies["appcompat_v7"]
+    implementation rootProject.ext.dependencies["constraint_layout"]
     //base
-    api project(':baselib')
+    implementation project(':baselib')
     //阿里ARouter
     annotationProcessor rootProject.ext.dependencies["arouter_compiler"]
 
     //依赖
-    api project(':libraries:vitamio')
-    api project(':libraries:xutils')
-    api project(':libraries:autolayout')
-    api project(':libraries:vrlib')
-    api project(':libraries:pulltorefresh')
-    api project(':libraries:adapter')
+    implementation project(':libraries:vitamio')
+    implementation project(':libraries:xutils')
+    implementation project(':libraries:autolayout')
+    implementation project(':libraries:vrlib')
+    implementation project(':libraries:pulltorefresh')
+    implementation project(':libraries:adapter')
 
-    api project(':javaLib')
+    implementation project(':javaLib')
 
 
-    api files('libs/AMap_Location_v1.4.1_20150917.jar')
-    api files('libs/umeng-analytics-v5.6.4.jar')
+    implementation files('libs/AMap_Location_v1.4.1_20150917.jar')
+    implementation files('libs/umeng-analytics-v5.6.4.jar')
 
-    api files('libs/mpchartlib.jar')
+    implementation files('libs/mpchartlib.jar')
     //图表
-    api files('libs/Msc.jar')
+    implementation files('libs/Msc.jar')
 
-    api files('libs/nineoldandroids-2.4.0.jar')
+    implementation files('libs/nineoldandroids-2.4.0.jar')
 
     implementation rootProject.ext.dependencies["qmui"]
     implementation rootProject.ext.dependencies["arch"]

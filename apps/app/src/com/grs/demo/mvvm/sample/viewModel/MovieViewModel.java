@@ -1,7 +1,6 @@
 package com.grs.demo.mvvm.sample.viewModel;
 
 import android.databinding.BaseObservable;
-import android.databinding.BindingAdapter;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
@@ -49,8 +48,7 @@ public class MovieViewModel extends BaseObservable {
     public String getImageUrl() {
         return movie.getImages().getSmall();
     }
-
-    @BindingAdapter({"app:imageUrl"})
+// TODO 提示报错   @BindingAdapter({"app:imageUrl"})
     public static void loadImage(ImageView imageView,String url) {
         Glide.with(imageView.getContext())
                 .load(url)

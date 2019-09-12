@@ -90,13 +90,10 @@ dependencies {
 
     implementation rootProject.ext.dependencies["appcompat_v7"]
     implementation rootProject.ext.dependencies["constraint_layout"]
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'com.android.support.test:runner:1.0.2'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     //Java Library 存放jar包的库
     compileOnly project(':javaLib')
     annotationProcessor project(':libCompiler')
-
-    api project(':libraries:lib_web')
+    implementation project(':baselib')
+    implementation project(':libraries:lib_web')
 }
 

@@ -32,14 +32,14 @@ import com.just.agentweb.DefaultWebClient;
 public class WebActivity extends BaseActivity {
 
     private static String TAG = WebActivity.class.getSimpleName();
-    private WebViewClient mWebViewClient = new WebViewClient() {
+    private com.just.agentweb.WebViewClient mWebViewClient = new com.just.agentweb.WebViewClient() {
         @Override
         public void onPageStarted(WebView view, String url, Bitmap favicon) {
             //do you  work
         }
     };
 
-    private WebChromeClient mWebChromeClient = new WebChromeClient() {
+    private com.just.agentweb.WebChromeClient mWebChromeClient = new com.just.agentweb.WebChromeClient() {
         @Override
         public void onProgressChanged(WebView view, int newProgress) {
             //do you work

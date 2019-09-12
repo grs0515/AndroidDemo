@@ -118,7 +118,10 @@ ext {
                     "lombok"                         : 'org.projectlombok:lombok:1.16.6',
                     //版本检测
                     "versioncheck"                   : 'com.allenliu.versionchecklib:library:2.1.9',
-                    "agentweb"                       : 'com.just.agentweb:agentweb:4.0.2',
+                    "agentweb"                       : 'com.just.agentweb:agentweb:4.1.2',
+                    "filechooser"                    : 'com.just.agentweb:filechooser:4.1.2',
+                    "sonic"                          : 'com.tencent.sonic:sdk:2.0.0',
+                    "downloader"                     : 'com.download.library:Downloader:4.1.2',
                     //腾讯qmui
                     "qmui"                           : 'com.qmuiteam:qmui:1.2.0',
                     "arch"                           : 'com.qmuiteam:arch:0.3.1',
